@@ -1,3 +1,14 @@
+<% if user_signed_in? %> 
+	<h3>Home</h3>
+		<div class="row">
+			<ul>
+				<% @users.each do |user| %>
+					<p>User: <%= user.full_name %> </p>				
+				<% end %> 
+			</ul>
+		</div>
+<% else %> 
+
 <div class="center hero-unit">
   <h1>Welcome to Where to Ski</h1>
 
@@ -5,5 +16,8 @@
     This is a temporary homepage
   </h2>
 
-<%= link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary" %>
+<%= link_to "Sign up now!", new_user_registration_path, class: "btn btn-large btn-primary" %>
+
 </div>
+
+<% end %>

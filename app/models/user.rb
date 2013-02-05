@@ -23,6 +23,10 @@
 #  terms                  :boolean
 #  email_opt_in           :boolean
 #  photo                  :string(255)
+#  confirmation_token     :string(255)
+#  confirmed_at           :datetime
+#  confirmation_sent_at   :datetime
+#  unconfirmed_email      :string(255)
 #
 
 class User < ActiveRecord::Base
@@ -30,9 +34,25 @@ class User < ActiveRecord::Base
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable, 
+         :token_authenticatable, :confirmable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me
+  attr_accessible 	:first_name, :last_name, :email, :password, :password_confirmation, :remember_me, :bio, 
+  					:home_mountain, :home_town, :terms, :email_opt_in, :photo, :confirmed_at
   # attr_accessible :title, :body
+
+  before_save :terms_agree
+
+  validates_presence_of :first_name, :last_name
+
+  def full_name 
+    self.first_name + " " + self.last_name
+  end
+
+  private 
+
+    def terms_agree
+      self.terms = true
+    end
 end
