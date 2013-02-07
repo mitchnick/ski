@@ -1,11 +1,7 @@
 <% if user_signed_in? %> 
 	<h3>Home</h3>
 		<div class="row">
-			<ul>
-				<% @users.each do |user| %>
-					<p>User: <%= user.full_name %> </p>				
-				<% end %> 
-			</ul>
+			<%= render 'shared/mountains_list' %>
 		</div>
 <% else %> 
 
