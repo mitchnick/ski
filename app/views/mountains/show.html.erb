@@ -1,2 +1,12 @@
 <% provide(:title, @mountain.name) %>
 <p>Mountain: <%= @mountain.name %></p>
+<p><%= link_to "Add a photo", new_mountain_photo_path(@mountain) %></p> 
+
+<p>Photos: </p>
+
+<ul>
+	<% @mountain.photos.each do |photo| %>
+		<%= link_to image_tag(photo.image_url(:thumb)), [@mountain, photo] %>
+		<li><%= link_to photo.name, [@mountain, photo] %></li>
+	<% end %>
+</ul>

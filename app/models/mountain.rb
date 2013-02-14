@@ -21,6 +21,8 @@ class Mountain < ActiveRecord::Base
   attr_accessible :name, :gps_lat, :gps_lon, :description, :phone, :web_link, :tickets_link, 
   		:trail_map, :region, :state
 
+  has_many :photos
+
   validates :name, 	presence: true, length: { maximum: 50 }
   
 

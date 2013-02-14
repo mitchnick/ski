@@ -1,0 +1,17 @@
+<% provide(:title, @photo.name) %>
+<p>Photo: <%= @photo.name %></p>
+<p>Description: <%= @photo.admin_description  %> </p>
+<p>Width: <%= @photo.width  %> </p>
+<p>Image: <%= @photo.image  %> </p>
+<p>Image_url: <%= @photo.image_url  %> </p>
+<p>Image_url(:thumb): <%= @photo.image_url(:thumb) %> </p>
+<p>remote_image_url: <%= @photo.remote_image_url %></p>
+
+<p>Mountain: <%= link_to @mountain.name, @mountain %> </p>
+<ul>
+<% @photo.attributes.each_pair do |h,v| %>
+<li><%= h.to_s %>: <%= v %></li>
+<% end %>
+</ul>
+
+<%= image_tag @photo.image_url if @photo.image? %>

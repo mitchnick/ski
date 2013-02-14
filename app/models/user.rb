@@ -1,3 +1,33 @@
+class User < ActiveRecord::Base
+  # Include default devise modules. Others available are:
+  # :token_authenticatable, :confirmable,
+  # :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable, 
+         :token_authenticatable, :confirmable
+
+  # Setup accessible (or protected) attributes for your model
+  attr_accessible 	:first_name, :last_name, :email, :password, :password_confirmation, :remember_me, :bio, 
+  					:home_mountain, :home_town, :terms, :email_opt_in, :photo, :confirmed_at
+  # attr_accessible :title, :body
+
+  has_many :photos, through: :photo_relationship
+  has_many :photo_relationships
+  
+  validates_presence_of :first_name, :last_name
+  
+  before_save :terms_agree
+
+  def full_name 
+    self.first_name + " " + self.last_name
+  end
+
+  private 
+    def terms_agree
+      self.terms = true
+    end
+end
+
 # == Schema Information
 #
 # Table name: users
@@ -28,31 +58,3 @@
 #  confirmation_sent_at   :datetime
 #  unconfirmed_email      :string(255)
 #
-
-class User < ActiveRecord::Base
-  # Include default devise modules. Others available are:
-  # :token_authenticatable, :confirmable,
-  # :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, 
-         :token_authenticatable, :confirmable
-
-  # Setup accessible (or protected) attributes for your model
-  attr_accessible 	:first_name, :last_name, :email, :password, :password_confirmation, :remember_me, :bio, 
-  					:home_mountain, :home_town, :terms, :email_opt_in, :photo, :confirmed_at
-  # attr_accessible :title, :body
-
-  before_save :terms_agree
-
-  validates_presence_of :first_name, :last_name
-
-  def full_name 
-    self.first_name + " " + self.last_name
-  end
-
-  private 
-
-    def terms_agree
-      self.terms = true
-    end
-end

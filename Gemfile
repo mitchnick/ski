@@ -11,6 +11,12 @@ gem 'figaro'
 gem 'activeadmin'
 gem "meta_search",    '>= 1.1.0.pre'
 gem 'smarter_csv'
+gem 'formtastic'
+
+# gems used for photos
+gem 'carrierwave'
+gem 'rmagick'
+gem 'exifr'
 
 group :development, :test do
   gem 'sqlite3', '1.3.5'

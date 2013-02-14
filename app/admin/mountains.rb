@@ -15,6 +15,7 @@ ActiveAdmin.register Mountain do
 	end
 
 	index do
+		selectable_column
 		default_actions
 		column :id
 		column :name

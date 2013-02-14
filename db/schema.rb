@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130205185336) do
+ActiveRecord::Schema.define(:version => 20130212232918) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -60,6 +60,51 @@ ActiveRecord::Schema.define(:version => 20130205185336) do
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end
+
+  create_table "photo_relationships", :force => true do |t|
+    t.integer  "photo_id"
+    t.integer  "user_id"
+    t.integer  "role_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "photo_relationships", ["photo_id"], :name => "index_photo_relationships_on_photo_id"
+  add_index "photo_relationships", ["user_id"], :name => "index_photo_relationships_on_user_id"
+
+  create_table "photos", :force => true do |t|
+    t.string   "name"
+    t.integer  "creator"
+    t.integer  "photographer"
+    t.integer  "rider"
+    t.integer  "mountain_id"
+    t.string   "mountain_fat"
+    t.string   "camera_type"
+    t.string   "lens_type"
+    t.string   "aperture"
+    t.string   "shutter_speed"
+    t.string   "focal_length"
+    t.integer  "views"
+    t.string   "license_attr"
+    t.string   "url"
+    t.string   "current_path"
+    t.string   "identifier"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zipcode"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+    t.string   "image"
+    t.text     "description"
+    t.string   "image_thumb"
+    t.string   "image_max_width"
+    t.string   "width"
+    t.string   "height"
+    t.date     "taken_time"
+    t.text     "admin_description"
+  end
+
+  add_index "photos", ["name", "photographer", "mountain_id"], :name => "index_photos_on_name_and_photographer_and_mountain"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
