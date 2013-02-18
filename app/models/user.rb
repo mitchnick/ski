@@ -11,8 +11,8 @@ class User < ActiveRecord::Base
   					:home_mountain, :home_town, :terms, :email_opt_in, :photo, :confirmed_at
   # attr_accessible :title, :body
 
-  has_many :photos, through: :photo_relationship
   has_many :photo_relationships
+  has_many :photos, :through => :photo_relationships
   
   validates_presence_of :first_name, :last_name
   

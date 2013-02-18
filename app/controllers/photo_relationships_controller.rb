@@ -7,9 +7,6 @@ class PhotoRelationshipsController < ApplicationController
 	
 	def create
 		@relationship = PhotoRelationship.new(params[:photo][:mountain])
-		@photo.create_photo_relationship()
-		# @relationship.user_id = current_user
-		# @relationship.photo_id = @photo.id
-		# @relationship.role_id = 0
+		# logger.warn("======#{@relationship.inspect}======")
 	end	
 end

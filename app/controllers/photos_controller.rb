@@ -19,14 +19,16 @@ class PhotosController < ApplicationController
 
   def create
   	@photo = @mountain.photos.new(params[:photo])
-    # @relationship = @photo.photo_relationships.build()
-    # @relationship.user_id = current_user.id
-    # @relationship.photo_id = @photo.id
-    # @relationship.role_id = 0
-
-    # @photo.create_photo_relationship(@photo, current_user, 0)
+    
   	if @photo.save
-  		flash[:notice] = "Successfully added your photo"
+      @relationship = @photo.photo_relationships.build
+      @relationship.photo_id = @photo.id
+      @relationship.user_id = current_user.id
+      @relationship.role_id = 0  #Creator
+      if @relationship.valid? 
+        @relationship.save
+      end
+      flash[:notice] = "Successfully added your photo"
   		redirect_to [@mountain, @photo]
   	else
   		render :action => 'new'

@@ -5,8 +5,8 @@ class Photo < ActiveRecord::Base
   	:taken_time, :admin_description
 
   belongs_to :mountain 
-  has_many :users, through: :photo_relationships
   has_many :photo_relationships, dependent: :destroy
+  has_many :users, :through => :photo_relationships
   validates :image, presence: true
   validates :name, presence: true, length: { maximum: 50 }
   validates :mountain, presence: true
