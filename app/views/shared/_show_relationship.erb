@@ -1,0 +1,3 @@
+<% @photo.photo_relationships.each do |relationship| %>
+	<li><%= relationship.role %> <%= link_to relationship.name, user_path(relationship.user_id) %></li>
+<% end %>

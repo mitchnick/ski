@@ -1,0 +1,10 @@
+<%= semantic_form_for ([@mountain, @photo]) do |f| %>
+	<%= f.semantic_errors :notice %>
+	<%= f.inputs do %>
+		<%= f.input :name %>
+    <%= f.input :remote_image_url %>
+    <% end %>
+    <%= f.actions do %>
+		<%= f.action :submit, :as => :button %>
+ 	<% end %> 
+ <% end %> 

@@ -9,9 +9,10 @@
 
 <p>Mountain: <%= link_to @mountain.name, @mountain %> </p>
 <ul>
-<% @photo.attributes.each_pair do |h,v| %>
-<li><%= h.to_s %>: <%= v %></li>
-<% end %>
+	<%= render '/shared/show_relationship' %>
+	<% @photo.attributes.each_pair do |h,v| %>
+		<li><%= h.to_s %>: <%= v %></li>
+	<% end %>
 </ul>
 
 <%= image_tag @photo.image_url if @photo.image? %>

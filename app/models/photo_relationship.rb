@@ -11,6 +11,17 @@ class PhotoRelationship < ActiveRecord::Base
 	# Photographer: 1 = role_id
 	# Rider: 2 = role_id
 
+	def role
+		if self.role_id == 0 then "Creator: "
+			elsif self.role_id == 1 then "Photographer: " 
+			elsif self.role_id == 2 then "Rider: "
+			else self.role_id 
+		end
+	end
+
+	def name
+		User.find(self.user_id).full_name
+	end
 end
 
 

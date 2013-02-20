@@ -7,21 +7,17 @@ class Photo < ActiveRecord::Base
   belongs_to :mountain 
   has_many :photo_relationships, dependent: :destroy
   has_many :users, :through => :photo_relationships
-  validates :image, presence: true
-  validates :name, presence: true, length: { maximum: 50 }
   validates :mountain, presence: true
-  # validates :creator, presence: true
-  
+  validates :image, :presence => {:unless => "remote_image_url", :message=> "You must enter an image or web link"}
+  validates :remote_image_url, :presence => {:message=>"You must enter an image or web link"}, :if => Proc.new { |a| a.image.blank?}
+  validates :name, presence: true, length: { maximum: 50 }
+
   before_create :get_photo_attributes
 
   mount_uploader :image, ImageUploader
 
-  def create_photo_relationship(photo, user, role)
-  	photo_relationships.create!(user_id: user, role_id: role, photo_id: photo)
-  end
-
   private
-  	def get_photo_attributes
+    def get_photo_attributes
   		exif = EXIFR::JPEG.new(image.file.file)  
   		self.width = exif.width
   		self.height = exif.height
