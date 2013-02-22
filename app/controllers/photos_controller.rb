@@ -32,7 +32,6 @@ class PhotosController < ApplicationController
   		redirect_to [@mountain, @photo]
   	else
   		render :action => 'new'
-      flash[:notice] = "Yikes. Not good."
   	end
   end
 

@@ -1,11 +1,10 @@
 <% provide(:title, @photo.name) %>
 <p>Photo: <%= @photo.name %></p>
-<p>Description: <%= @photo.admin_description  %> </p>
-<p>Width: <%= @photo.width  %> </p>
 <p>Image: <%= @photo.image  %> </p>
-<p>Image_url: <%= @photo.image_url  %> </p>
 <p>Image_url(:thumb): <%= @photo.image_url(:thumb) %> </p>
-<p>remote_image_url: <%= @photo.remote_image_url %></p>
+<p>Gnar: <%= @photo.gnars.count %></p>
+<%= render 'gnar_form' %>
+<p>Tags: <%= @photo.tag_list %></p>
 
 <p>Mountain: <%= link_to @mountain.name, @mountain %> </p>
 <ul>
@@ -16,3 +15,5 @@
 </ul>
 
 <%= image_tag @photo.image_url if @photo.image? %>
+<div id="disqus_thread"></div>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>

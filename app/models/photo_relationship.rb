@@ -23,7 +23,3 @@ class PhotoRelationship < ActiveRecord::Base
 		User.find(self.user_id).full_name
 	end
 end
-
-
-
-

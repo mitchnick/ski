@@ -1,12 +1,16 @@
 class Photo < ActiveRecord::Base
-  attr_accessible :name, :description, :creator, :photographer, :rider, :mountain, :mountain_fat, :camera_type, 
-  	:lens_type, :aperture, :shutter_speed, :focal_length, :views, :license_attr, :url, :current_path, :identifier, 
-  	:city, :state, :zipcode, :image, :remote_image_url, :image_thumb, :image_max_width, :width, :height, 
-  	:taken_time, :admin_description
+  attr_accessible :name, :description, :camera_type, :lens_type, :aperture, :shutter_speed, :focal_length, 
+    :views, :license_attr, :city, :state, :zipcode, :image, :remote_image_url, :image_thumb, :width, :height, 
+  	:taken_time, :tag_list, :gear_list
 
   belongs_to :mountain 
   has_many :photo_relationships, dependent: :destroy
+  has_many :gnars, dependent: :destroy
   has_many :users, :through => :photo_relationships
+  has_many :users, :through => :gnars
+  acts_as_taggable
+  acts_as_taggable_on :gear
+
   validates :mountain, presence: true
   validates :image, :presence => {:unless => "remote_image_url", :message=> "You must enter an image or web link"}
   validates :remote_image_url, :presence => {:message=>"You must enter an image or web link"}, :if => Proc.new { |a| a.image.blank?}

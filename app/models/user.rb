@@ -13,6 +13,8 @@ class User < ActiveRecord::Base
 
   has_many :photo_relationships
   has_many :photos, :through => :photo_relationships
+  has_many :gnars,  dependent: :destroy
+  has_many :photos, :through => :gnars
   
   validates_presence_of :first_name, :last_name
   

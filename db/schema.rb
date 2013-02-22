@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130212232918) do
+ActiveRecord::Schema.define(:version => 20130221191547) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -46,6 +46,13 @@ ActiveRecord::Schema.define(:version => 20130212232918) do
   add_index "admin_users", ["email"], :name => "index_admin_users_on_email", :unique => true
   add_index "admin_users", ["reset_password_token"], :name => "index_admin_users_on_reset_password_token", :unique => true
 
+  create_table "gnars", :force => true do |t|
+    t.integer  "photo_id"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "mountains", :force => true do |t|
     t.string   "name"
     t.string   "gps_lat"
@@ -74,11 +81,8 @@ ActiveRecord::Schema.define(:version => 20130212232918) do
 
   create_table "photos", :force => true do |t|
     t.string   "name"
-    t.integer  "creator"
-    t.integer  "photographer"
-    t.integer  "rider"
+    t.string   "image"
     t.integer  "mountain_id"
-    t.string   "mountain_fat"
     t.string   "camera_type"
     t.string   "lens_type"
     t.string   "aperture"
@@ -86,25 +90,37 @@ ActiveRecord::Schema.define(:version => 20130212232918) do
     t.string   "focal_length"
     t.integer  "views"
     t.string   "license_attr"
-    t.string   "url"
-    t.string   "current_path"
-    t.string   "identifier"
     t.string   "city"
     t.string   "state"
     t.string   "zipcode"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
-    t.string   "image"
-    t.text     "description"
-    t.string   "image_thumb"
-    t.string   "image_max_width"
     t.string   "width"
     t.string   "height"
     t.date     "taken_time"
-    t.text     "admin_description"
+    t.string   "image_url"
+    t.string   "remote_image_url"
+    t.text     "description"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
-  add_index "photos", ["name", "photographer", "mountain_id"], :name => "index_photos_on_name_and_photographer_and_mountain"
+  add_index "photos", ["name", "mountain_id", "views"], :name => "index_photos_on_name_and_photographer_and_mountain"
+
+  create_table "taggings", :force => true do |t|
+    t.integer  "tag_id"
+    t.integer  "taggable_id"
+    t.string   "taggable_type"
+    t.integer  "tagger_id"
+    t.string   "tagger_type"
+    t.string   "context",       :limit => 128
+    t.datetime "created_at"
+  end
+
+  add_index "taggings", ["tag_id"], :name => "index_taggings_on_tag_id"
+  add_index "taggings", ["taggable_id", "taggable_type", "context"], :name => "index_taggings_on_taggable_id_and_taggable_type_and_context"
+
+  create_table "tags", :force => true do |t|
+    t.string "name"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -138,3 +154,4 @@ ActiveRecord::Schema.define(:version => 20130212232918) do
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
 end
+

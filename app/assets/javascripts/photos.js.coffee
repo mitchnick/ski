@@ -1,3 +1,4 @@
-$ ->
-  activeTab = $('[href=' + location.hash + ']')
-  activeTab and activeTab.tab('show')
+$(document).ready( ->
+  $('#myTab a').click( (e) -> 
+    e.preventDefault()
+    $(@).tab('show')))
