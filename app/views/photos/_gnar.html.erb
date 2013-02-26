@@ -1,3 +1,4 @@
-<%= form_for(@photo.gnars.build(photo_id: @photo.id)) do |f| %>
+<%= form_for(@photo.gnars.build) do |f| %>
+	<%= f.hidden_field :photo_id %>
 	<%= f.submit "Give Gnar", class: "btn btn-large btn-primary" %>
 <% end %>

@@ -1,0 +1,5 @@
+<%= form_for @mountain.my_mountains.build do |f| %>
+	<%= f.hidden_field :mountain_id %>
+	<%= f.hidden_field :type, :value => 0 %>
+	<%= f.submit "I want to go here", class: "btn btn-large btn-primary" %>
+<% end %>

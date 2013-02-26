@@ -22,8 +22,7 @@ class Mountain < ActiveRecord::Base
   		:trail_map, :region, :state
 
   has_many :photos
+  has_many :my_mountains, dependent: :destroy
 
   validates :name, 	presence: true, length: { maximum: 50 }
-  
-
 end

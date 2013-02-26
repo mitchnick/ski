@@ -1,10 +1,17 @@
 class MountainsController < ApplicationController
+  before_filter :get_mountain
+
+  def get_mountain
+    @mountain = Mountain.find(params[:id])
+  end
+
   def index
     @mountains = Mountain.all
   end
 
 	def show
-		@mountain = Mountain.find(params[:id])
+		# @mountain = Mountain.find(params[:id])
+    @mymountains = @mountain.my_mountains
   end
 
   def create

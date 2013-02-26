@@ -11,6 +11,7 @@ class PhotosController < ApplicationController
 
   def show
     @photo = @mountain.photos.find(params[:id])
+    @gnars = @photo.gnars
   end
 
   def new

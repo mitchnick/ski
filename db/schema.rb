@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130221191547) do
+ActiveRecord::Schema.define(:version => 20130226162914) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -68,6 +68,14 @@ ActiveRecord::Schema.define(:version => 20130221191547) do
     t.datetime "updated_at",   :null => false
   end
 
+  create_table "my_mountains", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "mountain_id"
+    t.integer  "type"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
   create_table "photo_relationships", :force => true do |t|
     t.integer  "photo_id"
     t.integer  "user_id"
@@ -97,7 +105,6 @@ ActiveRecord::Schema.define(:version => 20130221191547) do
     t.string   "height"
     t.date     "taken_time"
     t.string   "image_url"
-    t.string   "remote_image_url"
     t.text     "description"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
@@ -154,4 +161,3 @@ ActiveRecord::Schema.define(:version => 20130221191547) do
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
 end
-

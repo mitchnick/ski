@@ -1,0 +1,2 @@
+module MyMountainsHelper
+end

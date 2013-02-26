@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
   # attr_accessible :title, :body
 
   has_many :photo_relationships
+  has_many :my_mountains, dependent: :destroy
   has_many :photos, :through => :photo_relationships
   has_many :gnars,  dependent: :destroy
   has_many :photos, :through => :gnars

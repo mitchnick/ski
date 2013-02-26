@@ -1,0 +1,4 @@
+<%= form_for(@mountain.my_mountains.find_by_user_id(current_user.id), html: { method: :delete}) do |f| %>
+	<%= f.hidden_field :type, :value => 1 %>
+	<%= f.submit "Unclick - I've been here", class: "btn btn-large btn-primary" %>
+<% end %>

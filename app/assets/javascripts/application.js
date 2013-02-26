@@ -15,3 +15,4 @@
 //= require_tree .
 //= require bootstrap-modal
 //= require bootstrap-tab
+//= require bootstrap-tooltip
