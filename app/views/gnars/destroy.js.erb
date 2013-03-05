@@ -1,0 +1,4 @@
+$(".gnar_count").html("Gnar: <%= @photo.gnars.count %>");
+$('.gnar_describe').tooltip('hide');
+$("#gnar_form").html("<%= escape_javascript(render(:partial => 'photos/gnar_form')) %>");
+$('.gnar_describe').tooltip('show');

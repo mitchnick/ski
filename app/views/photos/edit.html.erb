@@ -1,0 +1,11 @@
+<% provide(:title, "Edit photo") %> 
+<h1>Edit your photo</h1>
+
+<%= simple_form_for [@mountain, @photo] do |f| %>
+	<%= f.input :image %>
+	<%= f.input :name %>
+	<%= f.association :mountain, as: :select, collection: Mountain.all, label_method: :name, value_method: :id %>
+	<%= f.input :description, :input_html => { class: 'span6', rows: '3' }%>
+	<%= f.input :tag_list, as: :string %>
+	<%= f.button :submit %>
+<% end %> 

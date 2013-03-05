@@ -10,7 +10,10 @@ gem 'figaro'
 gem 'activeadmin'
 gem "meta_search",    '>= 1.1.0.pre'
 gem 'smarter_csv'
-gem 'formtastic-bootstrap'
+
+# gems for forms
+gem "select2-rails"
+gem 'simple_form'
 gem 'acts-as-taggable-on'
 
 # gems used for photos

@@ -8,20 +8,23 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible 	:first_name, :last_name, :email, :password, :password_confirmation, :remember_me, :bio, 
-  					:home_mountain, :home_town, :terms, :email_opt_in, :photo, :confirmed_at
+  					:home_mountain, :home_town, :terms, :email_opt_in, :photo, :confirmed_at, :current_password
   # attr_accessible :title, :body
 
+  mount_uploader :photo, AvatarUploader
+  
   has_many :photo_relationships
   has_many :my_mountains, dependent: :destroy
-  has_many :photos, :through => :photo_relationships
   has_many :gnars,  dependent: :destroy
-  has_many :photos, :through => :gnars
-  
+  has_many :relationship_photos, class_name: 'Photo', source: :photo, through: :photo_relationships
+  has_many :gnar_photos, class_name: 'Photo', source: :photo, :through => :gnars
+  has_many :mountains, :through => :my_mountains
+
   validates_presence_of :first_name, :last_name
   
   before_save :terms_agree
 
-  def full_name 
+  def name 
     self.first_name + " " + self.last_name
   end
 

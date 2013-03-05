@@ -12,6 +12,7 @@ class MountainsController < ApplicationController
 	def show
 		# @mountain = Mountain.find(params[:id])
     @mymountains = @mountain.my_mountains
+    @photos = @mountain.photos.sort { |x,y| y.gnars.count <=> x.gnars.count }
   end
 
   def create

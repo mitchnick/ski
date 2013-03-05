@@ -1,4 +1,6 @@
-<%= form_for(@mountain.my_mountains.find_by_user_id(current_user.id), html: { method: :delete}) do |f| %>
+<%= form_for(@mountain.my_mountains.find_by_user_id(current_user.id), html: { method: :delete}, remote: true) do |f| %>
 	<%= f.hidden_field :type, :value => 1 %>
-	<%= f.submit "Unclick - I've been here", class: "btn btn-large btn-primary" %>
+		<%= button_tag(type: 'submit', class: 'btn btn-warning btn-mini') do %>
+		<i class="icon-ok icon-white"></i> I've Been Here
+	<% end %>
 <% end %>

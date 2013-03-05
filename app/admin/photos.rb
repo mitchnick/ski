@@ -4,9 +4,6 @@ ActiveAdmin.register Photo do
 		default_actions
 		column :id
 		column :name
-		column :creator     	
-		column :photographer
-		column :rider
 		column :mountain
 	end  
 end

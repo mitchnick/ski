@@ -1,2 +1,14 @@
-<p>User: <%= @user.full_name %></p>
-<p>Email: <%= @user.email if @user.email %></p>
+<% provide(:title, @user.name) %>
+<h1><%= @user.name %></h1>
+<div class="user_photo center"> <%= user_image(@user, "img-circle img-polaroid", 100) %> </div>
+<div class="center"><%= if current_user then link_to "Edit User", edit_user_path(current_user) end %></div>
+<ul class="nav nav-tabs">
+  <li class="active"><a href="#user_pics" data-toggle="tab">Pics</a></li>
+  <li><a href="#user_bio" data-toggle="tab">Bio</a></li>
+  <li><a href="#user_slopes" data-toggle="tab">My Slopes</a></li>
+</ul>
+<div class="tab-content">
+  <div class="tab-pane active" id="user_pics"><%= render 'shared/pics' %></div>
+  <div class="tab-pane" id="user_bio"><%= render 'users/user_bio' %></div>
+  <div class="tab-pane" id="user_slopes"><%= render 'users/user_slopes' %></div>
+</div>

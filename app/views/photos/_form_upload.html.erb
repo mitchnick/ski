@@ -1,15 +1,10 @@
-<%= semantic_form_for ([@mountain, @photo]) do |f| %>
-	<%= f.semantic_errors :notice %>
-	<%= f.inputs do %>
-		<%= f.input :image %>
-		<%= f.input :name %>
- 		<% unless @mountain.id? %>
- 			<%= f.input :mountain %>
- 		<% end %>
- 		<%= f.input :description, :input_html => { class: 'span6', rows: '3' }%>
- 		<%= f.input :tag_list, as: :string %>
-  <% end %>
-  <%= f.actions do %>
-		<%= f.action :submit, :as => :button %>
- 	<% end %> 
+<%= simple_form_for ([@mountain, @photo]) do |f| %>
+	<%= f.input :image %>
+	<%= f.input :name %>
+	<% unless @mountain.id? %>
+		<%= f.input :mountain %>
+	<% end %>
+	<%= f.input :description, :input_html => { class: 'span6', rows: '3' }%>
+	<%= f.input :tag_list, as: :string %>
+	<%= f.button :submit %>
 <% end %> 

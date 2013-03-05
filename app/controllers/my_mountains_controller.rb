@@ -1,11 +1,13 @@
 class MyMountainsController < ApplicationController
 
+	respond_to :html, :js
 	def new
 		@mymountain = MyMountain.new
 	end
 
 	def create 
 		@mountain = Mountain.find(params[:my_mountain][:mountain_id])
+		@mymountains = @mountain.my_mountains
 		if @mountain.present?
 			@mymountain = @mountain.my_mountains.build
 			@mymountain.mountain_id = @mountain.id
@@ -13,13 +15,21 @@ class MyMountainsController < ApplicationController
 			@mymountain.type = params[:my_mountain][:type]
 			@mymountain.save
 		end
-		redirect_to :back
+		respond_to do |format|
+			format.html
+			format.js
+		end
 	end
 
 	def destroy
 		@mymountain = MyMountain.find(params[:id])
+		@mountain = @mymountain.mountain
+		@mymountains = @mountain.my_mountains
 		@mymountain.destroy
-		redirect_to :back
+		respond_to do |format|
+			format.html
+			format.js
+		end
 	end
 
 end

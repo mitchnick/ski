@@ -1,0 +1,13 @@
+<% provide(:title, "Edit user") %> 
+<div class="tabbable tabs-left">
+	<ul class="nav nav-tabs" id="editUser">
+	  <li class="active"><a href="#profile_form" data-toggle="tab">Profile Details</a></li>
+	  <li><a href="#avatar_form" data-toggle="tab">Your Picture</a></li>
+	  <li><a href="#credentials_form" data-toggle="tab">Email / Password</a></li>
+	</ul>
+	<div class="tab-content">
+	  <div class="tab-pane active" id="profile_form"><%= render 'profile_form' %></div>
+	  <div class="tab-pane" id="avatar_form"><%= render 'avatar_form' %></div>
+	  <div class="tab-pane" id="credentials_form"><%= render 'credentials_form' %></div>
+	</div>
+</div>

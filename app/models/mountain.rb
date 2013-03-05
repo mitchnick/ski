@@ -23,6 +23,12 @@ class Mountain < ActiveRecord::Base
 
   has_many :photos
   has_many :my_mountains, dependent: :destroy
+  has_many :users
 
   validates :name, 	presence: true, length: { maximum: 50 }
+
+  def top_image
+  	pics = photos.sort { |x,y| y.gnars.count <=> x.gnars.count }
+  	pics.first
+  end
 end

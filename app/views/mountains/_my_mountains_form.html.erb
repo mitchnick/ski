@@ -1,12 +1,16 @@
-<div class="my_mountain_form">	
+<div class="my_mountains_form">	
 	<div class="want_to_go">
 		<% if @mymountains.where("user_id = ? AND type = ?", current_user.id, 0).first %>
-			<%= render 'undo_want_to_go' %> 
+			<%= render 'mountains/undo_want_to_go' %> 
 		<% else %>
-			<%= render 'want_to_go' %>
+			<%= render 'mountains/want_to_go' %>
 		<% end %>
 	</div>
 	<div class="ive_been">
-		<%= render 'ive_been' %>
+		<% if @mymountains.where("user_id = ? AND type = ?", current_user.id, 1).first %>
+			<%= render 'mountains/undo_ive_been' %>
+		<% else %>
+			<%= render 'mountains/ive_been' %>
+		<% end %>
 	</div>
 </div> 

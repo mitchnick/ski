@@ -1,7 +1,7 @@
 class Photo < ActiveRecord::Base
   attr_accessible :name, :description, :camera_type, :lens_type, :aperture, :shutter_speed, :focal_length, 
     :views, :license_attr, :city, :state, :zipcode, :image, :remote_image_url, :image_thumb, :width, :height, 
-  	:taken_time, :tag_list, :gear_list
+  	:taken_time, :tag_list, :gear_list, :mountain_id
 
   belongs_to :mountain 
   has_many :photo_relationships, dependent: :destroy

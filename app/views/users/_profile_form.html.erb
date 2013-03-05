@@ -1,0 +1,13 @@
+<%= semantic_form_for @user do |f| %>
+	<%= f.semantic_errors :notice %>
+	<%= f.inputs do %>
+		<%= f.input :first_name %>
+		<%= f.input :last_name %>
+		<%= f.input :bio, :input_html => { class: 'span6', rows: '3' } %>
+		<%= f.input :home_town %>
+		<%= f.input :mountains, through: :my_mountains, as: :select %>
+  <% end %>
+  <%= f.actions do %>
+		<%= f.action :submit, :as => :button %>
+ 	<% end %> 
+<% end %> 

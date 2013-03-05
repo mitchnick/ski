@@ -11,4 +11,5 @@ class MyMountain < ActiveRecord::Base
 
   # type: 0 = Want to go
   # type: 1 = Have Been
+  # type: 2 = My Home Mountain
 end

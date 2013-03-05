@@ -1,7 +1,16 @@
-var disqus_shortname = 'wheretoski'; 
+$(document).ready(function() {
+	$("#photo_mountain_id").select2({
+  	placeholder: "Select a Mountain"
+  });
 
-(function() {
-    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-    dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-})();
+  $('.gnar_describe').tooltip();
+  
+  $('#newPhotoTab a').click(function(e) {
+    e.preventDefault();
+    $(this).tab('show');
+  });  
+  
+  alert("made to step 1");
+	$("#photo_tag_list").select2();
+	alert("success select2");
+});

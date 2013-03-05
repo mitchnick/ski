@@ -1,10 +1,11 @@
 <% provide(:title, @photo.name) %>
 <p>Photo: <%= @photo.name %></p>
+<p><%= link_to "Edit Photo", edit_mountain_photo_path(@mountain, @photo)%></p>
 <p>Image: <%= @photo.image  %> </p>
 <p>Image_url(:thumb): <%= @photo.image_url(:thumb) %> </p>
-<p>Gnar: <%= @photo.gnars.count %></p>
-<%= render 'gnar_form' %>
-<p>Tags: <%= @photo.tag_list %></p>
+<p class="gnar_count">Gnar: <%= @photo.gnars.count %></p>
+<div id="gnar_form"><%= render 'gnar_form' %></div>
+<div id="photo_tags"><%= render 'tags_form' %></div>
 
 <p>Mountain: <%= link_to @mountain.name, @mountain %> </p>
 <ul>
