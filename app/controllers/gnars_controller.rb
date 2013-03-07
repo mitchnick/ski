@@ -11,10 +11,7 @@ class GnarsController < ApplicationController
 		@photo = Photo.find(params[:gnar][:photo_id])
 		@gnars = @photo.gnars
 		if @photo.present?
-			@gnar = @photo.gnars.build
-			@gnar.photo_id = @photo.id
-			@gnar.user_id = current_user.id
-			@gnar.save
+			current_user.give_gnar(@photo)
 		end
 		respond_to do |format|
 			format.html
@@ -26,8 +23,8 @@ class GnarsController < ApplicationController
 	def destroy		
 		@gnar = Gnar.find(params[:id])
 		@photo = @gnar.photo
-		@gnars = @photo.gnars
-		@gnar.destroy 
+		@gnars = @gnar.photo.gnars
+		current_user.take_back_gnar(@gnar)
 		respond_to do |format|
 			format.html
 			format.js

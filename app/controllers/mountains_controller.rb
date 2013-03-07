@@ -12,7 +12,7 @@ class MountainsController < ApplicationController
 	def show
 		# @mountain = Mountain.find(params[:id])
     @mymountains = @mountain.my_mountains
-    @photos = @mountain.photos.sort { |x,y| y.gnars.count <=> x.gnars.count }
+    @photos = @mountain.photos.sort { |x,y| y.gnars.count <=> x.gnars.count }.paginate(page: params[:page], per_page: GlobalVar::PHOTOSPERPAGE)
   end
 
   def create

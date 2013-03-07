@@ -1,3 +1,7 @@
 <%= simple_form_for [@mountain, @photo], remote: true do |f| %>
-	<%= f.input :tag_list %>	
+	<%= f.input :tag_list, :input_html => {class: 'select2-container select2-container-multi'}  %>
 <% end %>
+
+<script type="text/javascript">
+	$("#photo_tag_list").select2({tags:[]});
+</script>

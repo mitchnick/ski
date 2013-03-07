@@ -4,13 +4,9 @@ $(document).ready(function() {
   });
 
   $('.gnar_describe').tooltip();
-  
+
   $('#newPhotoTab a').click(function(e) {
     e.preventDefault();
     $(this).tab('show');
-  });  
-  
-  alert("made to step 1");
-	$("#photo_tag_list").select2();
-	alert("success select2");
+  });
 });

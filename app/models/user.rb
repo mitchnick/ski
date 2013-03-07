@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible 	:first_name, :last_name, :email, :password, :password_confirmation, :remember_me, :bio, 
-  					:home_mountain, :home_town, :terms, :email_opt_in, :photo, :confirmed_at, :current_password
+  					:home_mountain, :home_town, :terms, :email_opt_in, :photo, :confirmed_at, :current_password, :mountain_id
   # attr_accessible :title, :body
 
   mount_uploader :photo, AvatarUploader
@@ -26,6 +26,41 @@ class User < ActiveRecord::Base
 
   def name 
     self.first_name + " " + self.last_name
+  end
+
+  def has_been_to(mountain)
+    mymountain = my_mountains.build
+    mymountain.type = MyMountainRole::HAVEBEEN
+    mymountain.user = self
+    mymountain.mountain = mountain
+    mymountain.save
+  end
+
+  def wants_to_go(mountain)
+    mymountain = my_mountains.build
+    mymountain.type = MyMountainRole::WANTTOGO
+    mymountain.user = self
+    mymountain.mountain = mountain
+    mymountain.save
+  end
+
+  def create_relationship(photo, role_id)
+    relationship = photo_relationships.build
+    relationship.photo = photo
+    relationship.user = self
+    relationship.role_id = role_id
+    relationship.save
+  end
+
+  def give_gnar(photo)
+    gnar = gnars.build
+    gnar.photo = photo
+    gnar.user = self
+    gnar.save
+  end
+
+  def take_back_gnar(gnar)
+    gnar.destroy
   end
 
   private 

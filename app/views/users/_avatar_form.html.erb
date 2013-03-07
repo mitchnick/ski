@@ -7,13 +7,8 @@
 </div>
 <h4 class="center">Choose a new picture</h4>
 <div class="center">
-<%= semantic_form_for ([@user]) do |f| %>
-	<%= f.semantic_errors :notice %>
-	<%= f.inputs do %>
-		<%= f.input :photo, label: "Choose image" %>
-  <% end %>
-  <%= f.actions do %>
-		<%= f.action :submit, :as => :button, :label => "Upload Image" %>
- 	<% end %> 
+<%= simple_form_for ([@user]) do |f| %>
+	<%= f.input :photo, label: "Choose image" %>
+	<%= f.button :submit, :label => "Upload Image" %>
 <% end %> 
 </div>

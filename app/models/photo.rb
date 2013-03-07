@@ -20,6 +20,10 @@ class Photo < ActiveRecord::Base
 
   mount_uploader :image, ImageUploader
 
+  def most_gnar(photos)
+    photos.order(sort { |x,y| y.gnars.count <=> x.gnars.count })
+  end
+
   private
     def get_photo_attributes
   		exif = EXIFR::JPEG.new(image.file.file)  

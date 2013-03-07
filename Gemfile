@@ -12,7 +12,6 @@ gem "meta_search",    '>= 1.1.0.pre'
 gem 'smarter_csv'
 
 # gems for forms
-gem "select2-rails"
 gem 'simple_form'
 gem 'acts-as-taggable-on'
 

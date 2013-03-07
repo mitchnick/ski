@@ -1,0 +1,9 @@
+<ul>
+	<% @gnars.each do |gnar| %>
+		<div>
+			<%= link_to image_tag(gnar.photo.image_url(:thumb)), [gnar.photo.mountain, gnar.photo] %>
+			<%= link_to gnar.photo.name, [gnar.photo.mountain, gnar.photo] %> -- <%= gnar.photo.gnars.count %>
+		</div>
+	<% end %>
+	<%= will_paginate @gnars %>
+</ul>

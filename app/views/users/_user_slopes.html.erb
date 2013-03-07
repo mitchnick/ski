@@ -1,14 +1,13 @@
 <h3>Places <%= @user.first_name %> Has Been</h3>
 <ul>
 	<% @have_been.each do |h| %>
-		<li><%= h.mountain.name %></li>
+		<%= render 'shared/show_mountain', h: h %>
 	<% end %>
 </ul>
 
 <h3>Places <%= @user.first_name %> Wants to Go</h3>
 <ul>
 	<% @want_to.each do |h| %>
-		<li><%= h.mountain.name %></li>
-		<li><%= link_to image_tag(h.mountain.top_image.image_url(:thumb)), [h.mountain]%></li>
+		<%= render 'shared/show_mountain', h: h %>
 	<% end %>
 </ul>
