@@ -11,7 +11,8 @@ Wheretoski::Application.routes.draw do
   end
 
   root to: 'static_pages#home'
-  devise_for :users
+  devise_for  :users, 
+              :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   resources :users, :only => [] do
     collection do
       get 'current'
@@ -29,6 +30,8 @@ Wheretoski::Application.routes.draw do
 
   match '/about',   to: 'static_pages#about'
   match '/contact', to: 'static_pages#contact'
+  
+  
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

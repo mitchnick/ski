@@ -1,3 +1,4 @@
 <p>Bio: <%= @user.bio %></p>
-<p>Home Mountain: <%= link_to @home_mountain.name, @home_mountain %> </p>
+<p>Home Mountain: <%= if @home_mountain.present? then link_to @home_mountain.name, @home_mountain else "Select your stomping ground" end %> </p>
+<!-- Add a form for select your stomping ground -->
 <p>Home Town: <%= @user.home_town %></p>

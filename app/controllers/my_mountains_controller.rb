@@ -7,11 +7,12 @@ class MyMountainsController < ApplicationController
 
 	def create 
 		@mountain = Mountain.find(params[:my_mountain][:mountain_id])
+		role_type = params[:my_mountain][:role_type].to_i
 		@mymountains = @mountain.my_mountains
 		if @mountain.present?
-			if @mountain.type = MyMountainRole::WANTTOGO
+			if role_type == MyMountainRole::WANTTOGO
 				current_user.wants_to_go(@mountain)
-			elsif @mountain.type = MyMountainRole::HAVEBEEN
+			elsif role_type == MyMountainRole::HAVEBEEN
 				current_user.has_been_to(@mountain)
 			end
 		end

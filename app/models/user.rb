@@ -4,11 +4,13 @@ class User < ActiveRecord::Base
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, 
-         :token_authenticatable, :confirmable
+         :token_authenticatable, :confirmable,
+         :omniauthable, :omniauth_providers => [:facebook]
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible 	:first_name, :last_name, :email, :password, :password_confirmation, :remember_me, :bio, 
-  					:home_mountain, :home_town, :terms, :email_opt_in, :photo, :confirmed_at, :current_password, :mountain_id
+  					:home_mountain, :home_town, :terms, :email_opt_in, :photo, :confirmed_at, :current_password, 
+            :mountain_id, :provider, :uid
   # attr_accessible :title, :body
 
   mount_uploader :photo, AvatarUploader
@@ -61,6 +63,25 @@ class User < ActiveRecord::Base
 
   def take_back_gnar(gnar)
     gnar.destroy
+  end
+
+  def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
+    user = User.where(:provider => auth.provider, :uid => auth.uid).first
+    # user = User.where(:email => auth.email).first()
+    unless user
+      user = User.create(first_name:auth.info.first_name,
+                           last_name:auth.info.last_name,
+                           provider:auth.provider,
+                           uid:auth.uid,
+                           email:auth.info.email,
+                           password:Devise.friendly_token[0,20],
+                           home_town:auth.info.location,
+                           photo:auth.info.image
+                           )
+      user.skip_confirmation!
+      user.save
+    end
+    user
   end
 
   private 

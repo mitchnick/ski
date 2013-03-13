@@ -1,15 +1,25 @@
 source 'https://rubygems.org'
 
+# default gems
 gem 'rails', '3.2.10'
-gem 'bootstrap-sass', '2.1'
-gem 'bcrypt-ruby', '3.0.1'
-gem 'faker', '1.0.1'
-gem 'bootstrap-will_paginate', '0.0.6'
-gem 'devise'
-gem 'figaro'
-gem 'activeadmin'
 gem "meta_search",    '>= 1.1.0.pre'
+gem 'bcrypt-ruby', '3.0.1'
+gem 'jquery-rails', '2.0.2'
+
+# gems for data
+gem 'faker', '1.0.1'
+gem 'figaro'   # makes data contants local and hidden
+
+# gems for design
+gem 'bootstrap-will_paginate', '0.0.6'
+gem 'bootstrap-sass', '2.1'
+
+# gems for users and admin backend
+gem 'devise'
+gem 'activeadmin'
 gem 'smarter_csv'
+gem 'omniauth'
+gem 'omniauth-facebook'
 
 # gems for forms
 gem 'simple_form'
@@ -39,8 +49,6 @@ group :assets do
   gem 'coffee-rails', '3.2.2'
   gem 'uglifier', '1.2.3'
 end
-
-gem 'jquery-rails', '2.0.2'
 
 group :test do
   gem 'cucumber-rails', require: false
