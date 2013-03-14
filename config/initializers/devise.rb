@@ -18,12 +18,12 @@ Devise.setup do |config|
   require "omniauth-facebook"
   if Rails.env == "development"
     config.omniauth :facebook, ENV["FACEBOOK_APP_ID"], ENV["FACEBOOK_APP_SECRET"], 
-      {:scope => 'email, offline_access', :client_options => {:ssl => {ca_file: Rails.root.join('lib/assets/cacert.pem').to_s}}}
+      {:scope => 'email, offline_access', :display => 'popup', :client_options => {:ssl => {ca_file: Rails.root.join('lib/assets/cacert.pem').to_s}}}
   end
 
   if Rails.env == "production"
     config.omniauth :facebook, ENV["FACEBOOK_APP_ID"], ENV["FACEBOOK_APP_SECRET"], 
-      {:scope => 'email, offline_access', :client_options => {:ssl => {:ca_file => '/usr/lib/ssl/certs/ca-certificates.crt'}}}
+      {:scope => 'email, offline_access', :display => 'popup', :client_options => {:ssl => {:ca_file => '/usr/lib/ssl/certs/ca-certificates.crt'}}}
   end
 
   # ==> Configuration for any authentication mechanism

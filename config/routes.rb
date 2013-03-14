@@ -13,6 +13,7 @@ Wheretoski::Application.routes.draw do
   root to: 'static_pages#home'
   devise_for  :users, 
               :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+
   resources :users, :only => [] do
     collection do
       get 'current'
@@ -30,8 +31,15 @@ Wheretoski::Application.routes.draw do
 
   match '/about',   to: 'static_pages#about'
   match '/contact', to: 'static_pages#contact'
-  
-  
+  match 'auth/facebook/callback' => redirect("/users/auth/facebook")
+
+  # match 'auth/:provider/callback', to: 'authentications#create'
+  # OR
+  # match 'auth/:provider/callback', to: 'users/omniauth_callbacks#facebook'
+
+  # match 'auth/failure', to: redirect('/')
+  # match 'signout', to: 'authentications#signout', as: 'signout'
+  # TODO: Verify which of the three lines above are required since I'm using devise
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

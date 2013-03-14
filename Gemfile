@@ -16,10 +16,10 @@ gem 'bootstrap-sass', '2.1'
 
 # gems for users and admin backend
 gem 'devise'
-gem 'activeadmin'
-gem 'smarter_csv'
 gem 'omniauth'
 gem 'omniauth-facebook'
+gem 'activeadmin'
+gem 'smarter_csv'
 
 # gems for forms
 gem 'simple_form'

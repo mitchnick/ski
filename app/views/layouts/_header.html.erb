@@ -9,6 +9,7 @@
           <% if user_signed_in? %> 
             <li><%= link_to "My Profile", user_path(current_user) %></li>
             <li><%= link_to "Sign out", destroy_user_session_path, method: "delete" %></li>
+            <!-- TODO: Add sign_out CSS ID to enable javascript which is already coded. Need to only add if signed in via facebook -->
           <% else %> 
             <li><%= link_to "Sign in", new_user_session_path %></li>
           <% end %>
