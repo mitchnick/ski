@@ -1,5 +1,5 @@
 class MyMountain < ActiveRecord::Base
-  attr_accessible :user_id, :mountain_id, :type
+  attr_accessible :user, :mountain, :type, :user_id, :mountain_id
   belongs_to :user
   belongs_to :mountain
   self.inheritance_column = nil

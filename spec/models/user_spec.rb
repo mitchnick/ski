@@ -43,6 +43,23 @@ describe User do
     }
   end
 
+  describe "my mountains" do
+    # TODO: Testing - Create a I Want to Go reference (can create and increment by one)
+  
+    # TODO: Testing - Create an I have been reference (can create and increment by one)
+
+    # TODO: Testing - Create my home mountain. Can have only one home mountain per user.
+
+    # TODO: Testing - Delete an I want to go reference. 
+
+    # TODO: Testing - Delete an I have been reference. 
+
+    # TODO: Testing - Sort of my mountains - most recent = first
+
+  end
+
+
+  # DEVISE REFERENCE TEST SCRIPTS
   it "should create a new instance given a valid attribute" do
     User.create!(@attr)
   end
