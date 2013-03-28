@@ -22,6 +22,7 @@ Wheretoski::Application.routes.draw do
     end
   end
   resources :users 
+  resources :regions
   resources :mountains do
     resources :photos
   end
@@ -31,6 +32,7 @@ Wheretoski::Application.routes.draw do
 
   match '/about',   to: 'static_pages#about'
   match '/contact', to: 'static_pages#contact'
+  match '/search',  to: 'static_pages#search'
   match 'auth/facebook/callback' => redirect("/users/auth/facebook")
 
   # match 'auth/:provider/callback', to: 'authentications#create'
@@ -99,7 +101,7 @@ Wheretoski::Application.routes.draw do
   # match ':controller(/:action(/:id))(.:format)'
 end
 #== Route Map
-# Generated on 26 Feb 2013 16:09
+# Generated on 27 Mar 2013 16:42
 #
 #         batch_action_admin_admin_users POST       /admin/admin_users/batch_action(.:format)         admin/admin_users#batch_action
 #                      admin_admin_users GET        /admin/admin_users(.:format)                      admin/admin_users#index
@@ -152,6 +154,22 @@ end
 #               admin_photo_relationship GET        /admin/photo_relationships/:id(.:format)          admin/photo_relationships#show
 #                                        PUT        /admin/photo_relationships/:id(.:format)          admin/photo_relationships#update
 #                                        DELETE     /admin/photo_relationships/:id(.:format)          admin/photo_relationships#destroy
+#             batch_action_admin_regions POST       /admin/regions/batch_action(.:format)             admin/regions#batch_action
+#                          admin_regions GET        /admin/regions(.:format)                          admin/regions#index
+#                                        POST       /admin/regions(.:format)                          admin/regions#create
+#                       new_admin_region GET        /admin/regions/new(.:format)                      admin/regions#new
+#                      edit_admin_region GET        /admin/regions/:id/edit(.:format)                 admin/regions#edit
+#                           admin_region GET        /admin/regions/:id(.:format)                      admin/regions#show
+#                                        PUT        /admin/regions/:id(.:format)                      admin/regions#update
+#                                        DELETE     /admin/regions/:id(.:format)                      admin/regions#destroy
+#               batch_action_admin_users POST       /admin/users/batch_action(.:format)               admin/users#batch_action
+#                            admin_users GET        /admin/users(.:format)                            admin/users#index
+#                                        POST       /admin/users(.:format)                            admin/users#create
+#                         new_admin_user GET        /admin/users/new(.:format)                        admin/users#new
+#                        edit_admin_user GET        /admin/users/:id/edit(.:format)                   admin/users#edit
+#                             admin_user GET        /admin/users/:id(.:format)                        admin/users#show
+#                                        PUT        /admin/users/:id(.:format)                        admin/users#update
+#                                        DELETE     /admin/users/:id(.:format)                        admin/users#destroy
 #            batch_action_admin_comments POST       /admin/comments/batch_action(.:format)            admin/comments#batch_action
 #                         admin_comments GET        /admin/comments(.:format)                         admin/comments#index
 #                                        POST       /admin/comments(.:format)                         admin/comments#create
@@ -170,6 +188,8 @@ end
 #                       new_user_session GET        /users/sign_in(.:format)                          devise/sessions#new
 #                           user_session POST       /users/sign_in(.:format)                          devise/sessions#create
 #                   destroy_user_session DELETE     /users/sign_out(.:format)                         devise/sessions#destroy
+#                user_omniauth_authorize            /users/auth/:provider(.:format)                   users/omniauth_callbacks#passthru {:provider=>/facebook/}
+#                 user_omniauth_callback            /users/auth/:action/callback(.:format)            users/omniauth_callbacks#(?-mix:facebook)
 #                          user_password POST       /users/password(.:format)                         devise/passwords#create
 #                      new_user_password GET        /users/password/new(.:format)                     devise/passwords#new
 #                     edit_user_password GET        /users/password/edit(.:format)                    devise/passwords#edit
@@ -183,6 +203,9 @@ end
 #                      user_confirmation POST       /users/confirmation(.:format)                     devise/confirmations#create
 #                  new_user_confirmation GET        /users/confirmation/new(.:format)                 devise/confirmations#new
 #                                        GET        /users/confirmation(.:format)                     devise/confirmations#show
+#                          current_users GET        /users/current(.:format)                          users#current
+#                             edit_users GET        /users/edit(.:format)                             users#edit
+#                  update_password_users PUT        /users/update_password(.:format)                  users#update_password
 #                                  users GET        /users(.:format)                                  users#index
 #                                        POST       /users(.:format)                                  users#create
 #                               new_user GET        /users/new(.:format)                              users#new
@@ -227,3 +250,5 @@ end
 #                                        DELETE     /my_mountains/:id(.:format)                       my_mountains#destroy
 #                                  about            /about(.:format)                                  static_pages#about
 #                                contact            /contact(.:format)                                static_pages#contact
+#                                 search            /search(.:format)                                 static_pages#search
+#                 auth_facebook_callback            /auth/facebook/callback(.:format)                 :controller#:action

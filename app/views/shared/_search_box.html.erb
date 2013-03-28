@@ -1,0 +1,18 @@
+<%= form_tag({controller: "static_pages", action: "search"}, method: "get", class: "navbar-search") do %>
+	<div class="input-append">
+		<%= text_field_tag 'search', nil, placeholder: "Search a mountain or region", autocomplete: "off", class: "search-query" %>
+	</div>
+<% end %>
+
+<% @search_mountains = Mountain.find(:all,:select=>'name') %>
+<% @search_regions = Region.find(:all,:select=>'name') %>
+<% @search = @search_mountains + @search_regions %>
+<%= javascript_tag "var search_list = #{ @search.map(&:name).to_json };" %>
+
+<script type="text/javascript">
+	jQuery(document).ready(function() {
+		$('input#search.search-query').typeahead({
+			'source' : search_list
+		});
+	});
+</script>

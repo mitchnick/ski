@@ -19,11 +19,12 @@
 
 class Mountain < ActiveRecord::Base
   attr_accessible :name, :gps_lat, :gps_lon, :description, :phone, :web_link, :tickets_link, 
-  		:trail_map, :region, :state
+  		:trail_map, :state, :region_id
 
   has_many :photos
   has_many :my_mountains, dependent: :destroy
   has_many :users
+  belongs_to :region
 
   validates :name, 	presence: true, length: { maximum: 50 }
 
@@ -35,5 +36,13 @@ class Mountain < ActiveRecord::Base
                 :group => "photos.mountain_id")
     # pics = photos.sort { |x,y| y.gnars.count <=> x.gnars.count }
     # pics.first
+  end
+
+  def self.search(search)
+    if search
+      find(:all, :conditions => ['name LIKE ?', "%#{search}%"])
+    else
+      find(:all)
+    end
   end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130312155114) do
+ActiveRecord::Schema.define(:version => 20130325200426) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -62,11 +62,13 @@ ActiveRecord::Schema.define(:version => 20130312155114) do
     t.string   "web_link"
     t.string   "tickets_link"
     t.string   "trail_map"
-    t.string   "region"
     t.string   "state"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
+    t.integer  "region_id"
   end
+
+  add_index "mountains", ["region_id"], :name => "index_mountains_on_region_id"
 
   create_table "my_mountains", :force => true do |t|
     t.integer  "user_id"
@@ -111,6 +113,12 @@ ActiveRecord::Schema.define(:version => 20130312155114) do
   end
 
   add_index "photos", ["name", "mountain_id", "views"], :name => "index_photos_on_name_and_photographer_and_mountain"
+
+  create_table "regions", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "taggings", :force => true do |t|
     t.integer  "tag_id"

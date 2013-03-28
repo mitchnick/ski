@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
   	protect_from_forgery
 
-end
+  	# for search across all mountains
+  	# @mountain_search = Mountain.find(params[:id])
+ end

@@ -1,16 +1,17 @@
 <header class="navbar navbar-fixed-top navbar-inverse">
   <div class="navbar-inner">
     <div class="container">
-      <%= link_to "Where to Ski", root_path, id: "logo" %>
+      <%= link_to "Where to Ski", root_path, class: "brand" %>
       <nav>
-        <ul class="nav pull-right">
+        <ul class="nav pull-right">         
+          <li><div style= "display:inline"><%= render 'shared/search_box' %></div></li>
           <li><%= link_to "Home",    root_path %></li>
           <li><%= link_to "About",   about_path %></li>
           <% if user_signed_in? %> 
             <li><%= link_to "My Profile", user_path(current_user) %></li>
             <li><%= link_to "Sign out", destroy_user_session_path, method: "delete" %></li>
             <!-- TODO: Add sign_out CSS ID to enable javascript which is already coded. Need to only add if signed in via facebook -->
-          <% else %> 
+          <% else %>  
             <li><%= link_to "Sign in", new_user_session_path %></li>
           <% end %>
         </ul>

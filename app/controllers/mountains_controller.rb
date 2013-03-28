@@ -19,4 +19,5 @@ class MountainsController < ApplicationController
   	@mountain = Mountain.new
   	# TODO : Model cleanup. Nothing has been added here and it needs to be done correctly
   end
+  
 end

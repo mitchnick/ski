@@ -12,7 +12,7 @@ gem 'figaro'   # makes data contants local and hidden
 
 # gems for design
 gem 'bootstrap-will_paginate', '0.0.6'
-gem 'bootstrap-sass', '2.1'
+gem 'bootstrap-sass'
 
 # gems for users and admin backend
 gem 'devise'

@@ -13,10 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
-//= require bootstrap-modal
-//= require bootstrap-tab
-//= require bootstrap-tooltip
-//= require select2
 
 function popupCenter(url, width, height, name) {
   var left = (screen.width/2)-(width/2);

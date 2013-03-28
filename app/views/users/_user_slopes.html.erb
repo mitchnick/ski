@@ -1,13 +1,13 @@
 <h3>Places <%= @user.first_name %> Has Been</h3>
 <ul>
 	<% @have_been.each do |h| %>
-		<%= render 'shared/show_mountain', h: h %>
+		<%= render 'shared/show_mountain', mountain: h.mountain %>
 	<% end %>
 </ul>
 
 <h3>Places <%= @user.first_name %> Wants to Go</h3>
 <ul>
 	<% @want_to.each do |h| %>
-		<%= render 'shared/show_mountain', h: h %>
+		<%= render 'shared/show_mountain', mountain: h.mountain %>
 	<% end %>
 </ul>
