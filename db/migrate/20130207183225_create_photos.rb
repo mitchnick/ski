@@ -22,6 +22,6 @@ class CreatePhotos < ActiveRecord::Migration
       t.string      :remote_image_url
       t.timestamps
     end
-    add_index :photos, [:name, :mountain, :views]
+    add_index :photos, [:name, :mountain_id, :views]
   end
 end
