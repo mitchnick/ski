@@ -1,3 +1,0 @@
-PhotoRelationshipsController < ApplicationController
-	
-end
