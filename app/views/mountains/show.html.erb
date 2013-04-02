@@ -1,6 +1,6 @@
 <% provide(:title, @mountain.name) %>
 <p>Mountain: <%= @mountain.name %></p>
-<p>Region: <%= @mountain.region %></p>
+<p>Region: <%= @mountain.region.name %></p>
 <p><%= link_to "Add a photo", new_mountain_photo_path(@mountain) %></p> 
 
 <p><%= render 'my_mountains_form' %></p>

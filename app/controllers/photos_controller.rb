@@ -12,6 +12,7 @@ class PhotosController < ApplicationController
   def show
     @photo = @mountain.photos.find(params[:id])
     @gnars = @photo.gnars
+    @photo.view_count_update(current_user, request.remote_ip)
   end
 
   def new

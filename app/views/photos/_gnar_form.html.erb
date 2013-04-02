@@ -1,6 +1,10 @@
 <div class="gnar_form">	
-	<% if @gnars.find_by_user_id(current_user.id) %>
-		<%= render :partial => 'photos/ungnar' %> 
+	<% if current_user.present? then %>
+		<% if @gnars.find_by_user_id(current_user.id) %>
+			<%= render :partial => 'photos/ungnar' %> 
+		<% else %>
+			<%= render :partial => 'photos/gnar' %>
+		<% end %>
 	<% else %>
 		<%= render :partial => 'photos/gnar' %>
 	<% end %>

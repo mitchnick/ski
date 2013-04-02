@@ -1,2 +1,2 @@
 <%= if mountain.photos.count >=1 then link_to image_tag(mountain.top_image.image_url(:thumb)), [mountain] end %>
-<b><%= mountain.name %></b>
+<b><%= link_to mountain.name, mountain %></b>

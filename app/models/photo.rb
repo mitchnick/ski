@@ -8,6 +8,7 @@ class Photo < ActiveRecord::Base
   has_many :gnars, dependent: :destroy
   has_many :users, :through => :photo_relationships
   has_many :users, :through => :gnars
+  has_many :views, dependent: :destroy
   acts_as_taggable
   acts_as_taggable_on :gear
 
@@ -22,6 +23,30 @@ class Photo < ActiveRecord::Base
 
   def most_gnar(photos)
     photos.order(sort { |x,y| y.gnars.count <=> x.gnars.count })
+  end
+
+  def view_count_update(current_user, remote_ip)
+    if current_user.present? then
+      unless View.where("user_id = ? AND photo_id = ? AND view_date = ?", current_user, self.id, Date.today).exists? then
+        new_view = View.create
+        new_view.user = current_user
+        new_view.photo = self
+        new_view.view_date = Date.today
+        new_view.save
+        self.increment(:views, by = 1)
+        self.save
+      end
+    else
+      unless View.where("ip_address = ? AND photo_id = ? AND view_date = ?", remote_ip, self.id, Date.today).exists? then
+        new_view = View.create
+        new_view.ip_address = remote_ip
+        new_view.photo = self
+        new_view.view_date = Date.today
+        new_view.save
+        self.increment(:views, by = 1)
+        self.save
+      end
+    end
   end
 
   private

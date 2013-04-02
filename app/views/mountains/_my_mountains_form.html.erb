@@ -1,14 +1,22 @@
 <div class="my_mountains_form">	
 	<div class="want_to_go">
-		<% if @mymountains.where("user_id = ? AND type = ?", current_user.id, MyMountainRole::WANTTOGO).first %>
-			<%= render 'mountains/undo_want_to_go' %> 
+		<% if current_user.present? then %>
+			<% if @mymountains.where("user_id = ? AND type = ?", current_user.id, MyMountainRole::WANTTOGO).first %>
+				<%= render 'mountains/undo_want_to_go' %> 
+			<% else %>
+				<%= render 'mountains/want_to_go' %>
+			<% end %>
 		<% else %>
 			<%= render 'mountains/want_to_go' %>
 		<% end %>
 	</div>
 	<div class="ive_been">
-		<% if @mymountains.where("user_id = ? AND type = ?", current_user.id, MyMountainRole::HAVEBEEN).first %>
-			<%= render 'mountains/undo_ive_been' %>
+		<% if current_user.present? then %>
+			<% if @mymountains.where("user_id = ? AND type = ?", current_user.id, MyMountainRole::HAVEBEEN).first %>
+				<%= render 'mountains/undo_ive_been' %>
+			<% else %>
+				<%= render 'mountains/ive_been' %>
+			<% end %>
 		<% else %>
 			<%= render 'mountains/ive_been' %>
 		<% end %>
