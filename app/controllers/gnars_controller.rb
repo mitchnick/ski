@@ -1,6 +1,5 @@
 class GnarsController < ApplicationController
-	before_filter :signed_in
-	# TODO: Model --- Make sure the user is signed in to do this, find right devise code
+	before_filter :authenticate_user!
 
 	respond_to :html, :js
 	def new
@@ -17,7 +16,6 @@ class GnarsController < ApplicationController
 			format.html
 			format.js
 		end
-		# redirect_to :back
 	end
 
 	def destroy		
@@ -30,11 +28,4 @@ class GnarsController < ApplicationController
 			format.js
 		end
 	end
-
-	private
-		def signed_in
-			# TODO: Add a place to ensure user is signed in
-			# @gnar = @photo.gnars.find_by_user_id(current_user.id)
-		end
-
 end

@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
   has_many :relationship_photos, class_name: 'Photo', source: :photo, through: :photo_relationships
   has_many :gnar_photos, class_name: 'Photo', source: :photo, :through => :gnars
   has_many :mountains, :through => :my_mountains
-  has_many :views, dependent: :destroy
+  has_many :view_counts, dependent: :destroy
 
   validates_presence_of :first_name, :last_name
   

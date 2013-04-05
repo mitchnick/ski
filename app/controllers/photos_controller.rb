@@ -1,5 +1,6 @@
 class PhotosController < ApplicationController
   before_filter :get_mountain
+  before_filter :authenticate_user!, only: [:new, :create, :edit, :update]
 
   def get_mountain
     @mountain = Mountain.find(params[:mountain_id])
@@ -24,6 +25,7 @@ class PhotosController < ApplicationController
     
   	if @photo.save
       current_user.create_relationship(@photo, RelationshipRole::CREATOR)
+      current_user.create_relationship(@photo, RelationshipRole::PHOTOGRAPHER)
       current_user.has_been_to(@mountain)
       flash[:notice] = "Successfully added your photo"
   		redirect_to [@mountain, @photo]
@@ -38,13 +40,17 @@ class PhotosController < ApplicationController
 
   def update
     @photo = @mountain.photos.find(params[:id])
-    if @photo.update_attributes(params[:photo])
-      flash[:success] = "Photo updated"
-      @mountain = Mountain.find(params[:photo][:mountain_id])
-      redirect_to [@mountain, @photo]
-    else
-      render 'edit'
-    end
+    # if @photo.photographers.where(photo_relationships: {role_id: RelationshipRole::CREATOR}).first != current_user
+      if @photo.update_attributes(params[:photo])
+        flash[:success] = "Photo updated"
+        @mountain = Mountain.find(params[:photo][:mountain_id])
+        redirect_to [@mountain, @photo]
+      else
+        render 'edit'
+      end
+    # else
+      # redirect_to new_user_registration_path
+    # end
   end
 
 end

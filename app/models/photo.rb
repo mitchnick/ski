@@ -1,14 +1,16 @@
 class Photo < ActiveRecord::Base
   attr_accessible :name, :description, :camera_type, :lens_type, :aperture, :shutter_speed, :focal_length, 
     :views, :license_attr, :city, :state, :zipcode, :image, :remote_image_url, :image_thumb, :width, :height, 
-  	:taken_time, :tag_list, :gear_list, :mountain_id
+  	:taken_time, :tag_list, :gear_list, :mountain_id, :image_url
 
   belongs_to :mountain 
   has_many :photo_relationships, dependent: :destroy
   has_many :gnars, dependent: :destroy
   has_many :users, :through => :photo_relationships
+  has_many :photographers, class_name: 'User', source: :user, through: :photo_relationships
   has_many :users, :through => :gnars
-  has_many :views, dependent: :destroy
+  has_many :view_counts, dependent: :destroy
+
   acts_as_taggable
   acts_as_taggable_on :gear
 
@@ -27,8 +29,8 @@ class Photo < ActiveRecord::Base
 
   def view_count_update(current_user, remote_ip)
     if current_user.present? then
-      unless View.where("user_id = ? AND photo_id = ? AND view_date = ?", current_user, self.id, Date.today).exists? then
-        new_view = View.create
+      unless ViewCount.where("user_id = ? AND photo_id = ? AND view_date = ?", current_user, self.id, Date.today).exists? then
+        new_view = ViewCount.create
         new_view.user = current_user
         new_view.photo = self
         new_view.view_date = Date.today
@@ -37,8 +39,8 @@ class Photo < ActiveRecord::Base
         self.save
       end
     else
-      unless View.where("ip_address = ? AND photo_id = ? AND view_date = ?", remote_ip, self.id, Date.today).exists? then
-        new_view = View.create
+      unless ViewCount.where("ip_address = ? AND photo_id = ? AND view_date = ?", remote_ip, self.id, Date.today).exists? then
+        new_view = ViewCount.create
         new_view.ip_address = remote_ip
         new_view.photo = self
         new_view.view_date = Date.today
@@ -48,22 +50,22 @@ class Photo < ActiveRecord::Base
       end
     end
   end
+  
+  def get_photo_attributes
+    exif = EXIFR::JPEG.new(image.file.file)  
+    self.width = exif.width
+    self.height = exif.height
+    self.camera_type = exif.model
+    self.aperture = exif.f_number.to_f
+    self.shutter_speed = exif.exposure_time.to_s
+    self.focal_length = exif.focal_length.to_f
+    self.taken_time = exif.date_time
+    # self.gps_lat = 
+    # self.gps_lng
+    # self.lens_type =      
+    # self.iso = exif.iso_speed_ratings
+  end
 
-  private
-    def get_photo_attributes
-  		exif = EXIFR::JPEG.new(image.file.file)  
-  		self.width = exif.width
-  		self.height = exif.height
-  		self.camera_type = exif.model
-  		self.aperture = exif.f_number.to_f
-  		self.shutter_speed = exif.exposure_time.to_s
-  		self.focal_length = exif.focal_length.to_f
-  		self.taken_time = exif.date_time
-  		# self.gps_lat = 
-  		# self.gps_lng
-  		# self.lens_type =   		
-  		# self.iso = exif.iso_speed_ratings
-  	end
 end
 
 # == Schema Information

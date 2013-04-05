@@ -1,0 +1,13 @@
+<ul class="thumbnails">
+	<% @shoots.each do |shoots| %>
+		<div>
+			<li class="span2">
+				<div class="text-center"</div>					
+					<%= user_image(shoots, "img-circle img-polaroid", 100) %>
+					<%= link_to shoots.name, shoots %>
+				</div>
+			</li>
+		</div>
+	<% end %>
+	<%= will_paginate @shoots %>
+</ul>

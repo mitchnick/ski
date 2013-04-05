@@ -1,5 +1,6 @@
 class MountainsController < ApplicationController
   before_filter :get_mountain
+  before_filter :authenticate_admin!, only: :create
 
   def get_mountain
     @mountain = Mountain.find(params[:id])
@@ -10,14 +11,14 @@ class MountainsController < ApplicationController
   end
 
 	def show
-		# @mountain = Mountain.find(params[:id])
     @mymountains = @mountain.my_mountains
     @photos = @mountain.photos.sort { |x,y| y.gnars.count <=> x.gnars.count }.paginate(page: params[:page], per_page: GlobalVar::PHOTOSPERPAGE)
+    @shoots = @mountain.photographers.where(photo_relationships: {role_id: RelationshipRole::PHOTOGRAPHER}).uniq.paginate(page: params[:page], per_page: GlobalVar::PHOTOSPERPAGE)
+    @rides = @mountain.users.where(my_mountains: {type: MyMountainRole::HAVEBEEN}).uniq.paginate(page: params[:page], per_page: GlobalVar::PHOTOSPERPAGE)
   end
 
   def create
   	@mountain = Mountain.new
-  	# TODO : Model cleanup. Nothing has been added here and it needs to be done correctly
   end
   
 end

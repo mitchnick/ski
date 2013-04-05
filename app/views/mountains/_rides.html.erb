@@ -1,0 +1,13 @@
+<ul class="thumbnails">
+	<% @rides.each do |rides| %>
+		<div>
+			<li class="span2">
+				<div class="text-center"</div>					
+					<%= user_image(rides, "img-circle img-polaroid", 100) %>
+					<%= link_to rides.name, rides %>
+				</div>
+			</li>
+		</div>
+	<% end %>
+	<%= will_paginate @rides %>
+</ul>

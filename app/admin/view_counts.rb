@@ -1,10 +1,11 @@
-ActiveAdmin.register PhotoRelationship do
+ActiveAdmin.register ViewCount do
 	index do
 		selectable_column
 		default_actions
 		column :id
-		column :role_id
+		column :ip_address
 		column :user
 		column :photo
+		column :view_date
 	end  
 end

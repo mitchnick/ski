@@ -1,18 +1,17 @@
 <% @m_count = 0 %>
 <% @r_count = 0 %>
 <% @current_region = nil %>
-<ul>
-	<% @mountains.each do |mountain| %>
-		<% if mountain.region != @current_region then %>
-			<% @current_region = mountain.region %>
-			<h2> <%= mountain.region.name %> </h2>
-		<% end %>
-		<%= render 'shared/show_mountain', mountain: mountain %>
-		<% @m_count += 1 %>
-	<% end %>
 
-</ul>
-<% @regions.each do |h| %>
+<% @regions.each do |region| %>
+	<div class="row">
+		<h2><%= region.name %> </h2>
+	</div>
+	<ul class="thumbnails">
+		<% @mountains.select{ |m| m.region == region }.each do |mountain| %>
+			<%= render 'shared/show_mountain', mountain: mountain %>
+			<% @m_count += 1 %>
+		<% end %>
+	</ul>
 	<% @r_count += 1 %>
 <% end %>
 <p>There are <%= @m_count %> Mountain search results.</p>

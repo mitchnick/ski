@@ -1,10 +1,25 @@
 <% provide(:title, @mountain.name) %>
-<p>Mountain: <%= @mountain.name %></p>
-<p>Region: <%= @mountain.region.name %></p>
-<p><%= link_to "Add a photo", new_mountain_photo_path(@mountain) %></p> 
-
-<p><%= render 'my_mountains_form' %></p>
+<div class="row-fluid">
+	<div class="span4 text-center"><%= render 'my_mountains_form' %></div>
+	<div class="span4 text-center">
+		<h1><%= @mountain.name %></h1>
+		<h4><%= link_to @mountain.region.name, @mountain.region %></h4>
+	</div>
+	<div class="span4 text-center"><%= link_to "Add a photo", new_mountain_photo_path(@mountain), class: "btn btn-primary" %></div>
+</div>
 
 <!-- Add tabs here -->
-<p>Photos: </p>
-<%= render 'shared/pics' %>
+<div class="row">
+	<ul class="nav nav-tabs" id="mountainTabs">
+	  <li class="active"><a href="#mountain_pics" data-toggle="tab">Pics</a></li>
+	  <li><a href="#mountain_info" data-toggle="tab">Mountain Info</a></li>
+	  <li><a href="#shoots_here" data-toggle="tab">Who Shoots Here</a></li>
+	  <li><a href="#rides_here" data-toggle="tab">Who Rides Here</a></li>
+	</ul>
+</div>
+<div class="tab-content">
+  <div class="tab-pane active" id="mountain_pics"><%= render 'shared/pics' %></div>
+  <div class="tab-pane" id="mountain_info"><%= render 'mountains/info' %></div>
+  <div class="tab-pane" id="shoots_here"><%= render 'mountains/shoots' %></div>
+  <div class="tab-pane" id="rides_here"><%= render 'mountains/rides' %></div>
+</div>

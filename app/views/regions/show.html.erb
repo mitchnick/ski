@@ -1,4 +1,7 @@
 <h2> <%= @region.name %> </h2>
-<% @mountains.each do |mountain| %>
-	<%= render 'shared/show_mountain', mountain: mountain %>
-<% end %> 
+<ul class="thumbnails">
+	<% @mountains.each do |mountain| %>
+		<%= render 'shared/show_mountain', mountain: mountain %>
+	<% end %> 
+	<%= will_paginate @mountains %>
+</ul>

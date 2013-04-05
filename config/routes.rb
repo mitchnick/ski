@@ -29,6 +29,7 @@ Wheretoski::Application.routes.draw do
   resources :photo_relationships
   resources :gnars
   resources :my_mountains
+  resources :view_counts
 
   match '/about',   to: 'static_pages#about'
   match '/contact', to: 'static_pages#contact'

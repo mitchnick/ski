@@ -1,6 +1,6 @@
 class Views < ActiveRecord::Migration
   def up
-    create_table :views do |t|
+    create_table :view_counts do |t|
     	t.integer			:photo_id
     	t.integer			:user_id
     	t.string			:ip_address
@@ -9,6 +9,6 @@ class Views < ActiveRecord::Migration
     end
   end
   def down
-  	drop_table :views
+  	drop_table :view_counts
   end
 end
