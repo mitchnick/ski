@@ -6,15 +6,14 @@
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
   </head>
-  <body>
+  <body class="<%= @landing_page ? 'landing_page' : ''%>", background="<%= @landing_page ? @photo.image : ''%>">
     <%= render 'layouts/header' %>
     <div class="container main-content-container">
       <% flash.each do |key, value| %>
         <div class="alert alert-<%= key %>"><%= value %> </div>
       <% end %>
       <%= yield %>
-      <%= render 'layouts/footer' %>
-      <%= debug(params) if Rails.env.development? %> 
+      <%= unless @no_footer then render 'layouts/footer' end %>
     </div>
   </body>
 </html>

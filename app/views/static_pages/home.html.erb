@@ -4,16 +4,21 @@
 			<%= render 'shared/mountains_list' %>
 		</div>
 <% else %> 
-
-<div class="center hero-unit">
-  <h1>Welcome to Where to Ski</h1>
-
-  <h2>
-    This is a temporary homepage
-  </h2>
-
-<%= link_to "Sign up now!", new_user_registration_path, class: "btn btn-large btn-primary" %>
-
+<div class="span6 offset6 text-center top-spacing-medium">
+	<div class="well see-through">
+	  <h1>Where to Ski</h1>
+	  <p class="lead">The beauty of the mountain on the web</p>
+		<%= link_to "Sign up now!", new_user_registration_path, class: "btn btn-large btn-primary" %>
+	</div>
 </div>
-
+<div class="span3 offset5 text-center top-spacing-large">
+	<div class="well well-small see-through">
+		<strong><%= link_to @photo.name, [@photo.mountain, @photo] %></strong><br><em> a photo at <%= link_to @photo.mountain.name, @photo.mountain %></em>
+	</div>
+</div>
+<div class="span4 offset7 text-center">
+	<div class="well well-small see-through">
+		<strong><em>A photo by <%= link_to @photo_user.name, @photo_user %></em></strong>
+	</div>
+</div>
 <% end %>
