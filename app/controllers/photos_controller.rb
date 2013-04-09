@@ -14,6 +14,7 @@ class PhotosController < ApplicationController
     @photo = @mountain.photos.find(params[:id])
     @gnars = @photo.gnars
     @photo.view_count_update(current_user, request.remote_ip)
+    @photo_user = PhotoRelationship.where("role_id = ? AND photo_id = ?", RelationshipRole::CREATOR, params[:id]).first.user
   end
 
   def new

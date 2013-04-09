@@ -6,5 +6,9 @@
 	<%= f.input :name %>
 	<%= f.association :mountain, as: :select, collection: Mountain.all, label_method: :name, value_method: :id %>
 	<%= f.input :description, :input_html => { class: 'span6', rows: '3' }%>
+	<%= f.input :tag_list, :input_html => {class: 'select2-container select2-container-multi', style: 'width:40%'} %>
 	<%= f.button :submit %>
 <% end %> 
+<script type="text/javascript">
+	$("#photo_tag_list").select2({tags:[], width: 'resolve' });
+</script>

@@ -1,20 +1,87 @@
 <% provide(:title, @photo.name) %>
-<p>Photo: <%= @photo.name %></p>
-<p><%= link_to "Edit Photo", edit_mountain_photo_path(@mountain, @photo)%></p>
-<p>Image: <%= @photo.image  %> </p>
-<p>Image_url(:thumb): <%= @photo.image_url(:thumb) %> </p>
-<p class="gnar_count">Gnar: <%= @photo.gnars.count %></p>
-<div id="gnar_form"><%= render 'gnar_form' %></div>
-<div id="photo_tags"><%= render 'tags_form' %></div>
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span7">
+			<h2> <%= @photo.name %></h2>
+		</div>
+		<% if current_user == @photo_user then %>
+			<div class="span2 text-right vcenter-button">
+				<%= link_to "Edit Photo", edit_mountain_photo_path(@mountain, @photo), class: "btn" %>
+			</div>
+		<% end %>		
+	</div>
+</div>
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span9">
+			<!-- Left section -->
+			<div class="main-photo"><%= image_tag @photo.image_url if @photo.image? %></div>
+			<div class="shared-links"><%= render 'shared/share_links' %></div>
+			<div id="disqus_thread"></div>
+			<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+		</div>
+		<div class="span3">
+			<!-- Right section -->
+			<div class="row-fluid well">
+				<!-- Photographer Section -->
+				<% if @photo_user.present? then %>
+					<div class="span4 user_photo"> <%= link_to user_image(@photo_user, '',70), @photo_user %> </div>
+					<div class="span8"><p>Photo By:</p><h4> <%= link_to @photo_user.name, @photo_user %></h4></div>
+				<% end %>
+			</div>
+			<div class="row-fluid well">
+				<!-- Views and Gnars section -->
+				<div class="span12 gnar-form"><%= render 'gnar_form' %></div>
+				<div class="text-center">Total Gnar: <%= @photo.gnars.count %></div>
+				<div class="text-center">Total Views: <%= @photo.views %></div>
+			</div>
+			<div class="row-fluid well photo-description">
+				<!-- Photo description and tags -->
+				<p><strong>Mountain:</strong> <%= link_to @photo.mountain.name, @photo.mountain %><br>
+				<p><strong>Region:</strong> <%= link_to @photo.mountain.region.name, @photo.mountain.region %></p>
+				<% if @photo.description.length > 0 || current_user == @photo_user then %>
+					<p><strong>About the Photo:</strong> <%= @photo.description %>
+					<% if @photo.description.length == 0 then link_to "Edit Description", edit_mountain_photo_path(@mountain, @photo) end %>
+					</p>
+				<% end %>
+				<% if @photo.tag_list.length > 0 || current_user == @photo_user then %>
+					<strong>Tags:</strong> 
+					<% if current_user == @photo_user then %>
+						<div id="photo_tags"><%= render 'tags_form' %></div>
+					<% else %>
+						<%= @photo.tag_list %>
+					<% end %>
+				<% end %>
+			</div>
+			<% if @photo.exif_data? then %>
+				<div class="row-fluid well camera-settings">
+					<!-- Camera Settings when taking the picture -->
+					<p><strong>Camera:</strong> <%= @photo.camera_type %></p>
+					<% if @photo.aperture.length > 0 then %>
+						<p><strong>Aperture:</strong> f/<%= @photo.aperture %></p>
+					<% end %>
+					<% if @photo.focal_length.length > 0 then %>
+						<p><strong>Focal Length:</strong> <%= @photo.focal_length %>mm</p>
+					<% end %>
+					<% if @photo.shutter_speed.length > 0 then %>
+						<p><strong>Shutter Speed:</strong> <%= @photo.shutter_speed %> sec</p>
+					<% end %>
+				</div>
+			<% end %>
+		</div>
+	</div>
+</div>
 
-<p>Mountain: <%= link_to @mountain.name, @mountain %> </p>
-<ul>
-	<%= render '/shared/show_relationship' %>
-	<% @photo.attributes.each_pair do |h,v| %>
-		<li><%= h.to_s %>: <%= v %></li>
-	<% end %>
-</ul>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'wheretoski'; // required: replace example with your forum shortname
 
-<%= image_tag @photo.image_url if @photo.image? %>
-<div id="disqus_thread"></div>
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
 <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>

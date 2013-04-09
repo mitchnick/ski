@@ -1,12 +1,13 @@
 <div class="gnar_form">	
 	<% if current_user.present? then %>
 		<% if @gnars.find_by_user_id(current_user.id) %>
+		<!-- User is signed in and has already given gnar -->
 			<%= render :partial => 'photos/ungnar' %> 
 		<% else %>
 			<%= render :partial => 'photos/gnar' %>
+			<!-- User is signed in and has not given gnar -->
 		<% end %>
 	<% else %>
 		<%= render :partial => 'photos/gnar' %>
 	<% end %>
 </div>
-<!-- <a href="#" class="gnar_describe" title="Give props to this photo and vote it up">What is Gnar?</a> -->

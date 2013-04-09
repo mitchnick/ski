@@ -1,5 +1,5 @@
 <%= simple_form_for [@mountain, @photo], remote: true do |f| %>
-	<%= f.input :tag_list, :input_html => {class: 'select2-container select2-container-multi'}  %>
+	<%= f.input :tag_list, label: false, :input_html => {class: 'select2-container select2-container-multi', style: 'width:100%'}  %>
 <% end %>
 
 <script type="text/javascript">

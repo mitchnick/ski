@@ -66,6 +66,10 @@ class Photo < ActiveRecord::Base
     # self.iso = exif.iso_speed_ratings
   end
 
+  def exif_data?
+    if self.camera_type.length > 0 || self.aperture.length > 0 || self.focal_length.length > 0 || self.shutter_speed.length > 0 then true else false end
+  end
+
 end
 
 # == Schema Information

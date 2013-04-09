@@ -1,3 +1,3 @@
 <%= form_for(@photo.gnars.find_by_user_id(current_user.id), html: { method: :delete}, :remote => true ) do |f| %>
-	<%= f.submit "Ungnar", class: "btn btn-large btn-primary gnar_describe", :title => "Taking back my given props" %>
+	<%= f.submit "Ungnar", class: "btn btn-large btn-primary btn-block gnar_describe", :title => "Taking back my given props" %>
 <% end %>

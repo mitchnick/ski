@@ -1,13 +1,13 @@
 class StaticPagesController < ApplicationController
 
 	def home
-		@landing_page = true
+		if current_user.present? then @landing_page = false else @landing_page = true end
 		@no_footer = true
 		@mountains = Mountain.all
 		# Photo for landing page background to be a top 10 most viewed photo
-		@photos = Photo.order("views DESC").limit(10)
+		@photos = Photo.all.sort { |x,y| y.gnars.count <=> x.gnars.count }.paginate(page: params[:page], per_page: GlobalVar::PHOTOSPERPAGE)
 		@photo = @photos[Random.rand(10)]
-		@photo_user = PhotoRelationship.where("role_id AND photo_id", RelationshipRole::CREATOR, @photo.id).first.user
+		@photo_user = PhotoRelationship.where("role_id = ? AND photo_id = ?", RelationshipRole::CREATOR, @photo.id).first.user
 	end
 
 	def search
