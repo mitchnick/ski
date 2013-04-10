@@ -3,7 +3,7 @@ class PhotosController < ApplicationController
   before_filter :authenticate_user!, only: [:new, :create, :edit, :update]
 
   def get_mountain
-    @mountain = Mountain.find(params[:mountain_id])
+    @mountain = Mountain.find_by_slug!(params[:mountain_id])
   end
 
   def index

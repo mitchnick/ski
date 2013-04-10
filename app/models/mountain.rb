@@ -28,7 +28,17 @@ class Mountain < ActiveRecord::Base
   has_many :users, through: :my_mountains
   belongs_to :region
 
-  validates :name, 	presence: true, length: { maximum: 50 }
+  validates :name,	presence: true, length: { maximum: 50 }
+  validates :slug, uniqueness: true, presence: true
+  before_validation :generate_slug
+  
+  def to_param
+    "#{name}".parameterize
+  end
+
+  def generate_slug
+    self.slug ||= name.parameterize
+  end
 
   def top_image
   	Photo.find( :first,:select => "photos.*, count(gnars.id) as gnar_count", 

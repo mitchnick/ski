@@ -2,9 +2,9 @@
 	<% @photos.each do |photo| %>
 		<div>
 			<li class="span3">
-				<div class="thumbnail text-center">
+				<div class="thumbnail photo-with-text">
 					<%= link_to image_tag(photo.image_url(:thumb)), [photo.mountain, photo]%>
-					<%= link_to photo.name, [photo.mountain, photo]%>
+					<div class="photo-text"><%= link_to photo.name, [photo.mountain, photo]%></div>
 				</div>
 			</li>
 		</div>

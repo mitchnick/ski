@@ -3,7 +3,7 @@ class MountainsController < ApplicationController
   before_filter :authenticate_admin!, only: :create
 
   def get_mountain
-    @mountain = Mountain.find(params[:id])
+    @mountain = Mountain.find_by_slug!(params[:id])
   end
 
   def index

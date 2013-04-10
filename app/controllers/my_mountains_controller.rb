@@ -7,7 +7,7 @@ class MyMountainsController < ApplicationController
 	end
 
 	def create 
-		@mountain = Mountain.find(params[:my_mountain][:mountain_id])
+		@mountain = Mountain.find_by_id(params[:my_mountain][:mountain_id])
 		role_type = params[:my_mountain][:role_type].to_i
 		@mymountains = @mountain.my_mountains
 		if @mountain.present?
