@@ -22,6 +22,7 @@ class User < ActiveRecord::Base
   has_many :gnar_photos, class_name: 'Photo', source: :photo, :through => :gnars
   has_many :mountains, :through => :my_mountains
   has_many :view_counts, dependent: :destroy
+  has_many :photos
 
   validates_presence_of :first_name, :last_name
   

@@ -19,6 +19,7 @@ class PhotosController < ApplicationController
 
   def new
   	@photo = @mountain.photos.build
+    @user = current_user.id
   end
 
   def create

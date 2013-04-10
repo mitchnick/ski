@@ -6,5 +6,6 @@
 	<% end %>
   <%= f.input :description, :input_html => { class: 'span6', rows: '3' } %>
 	<%= f.input :tag_list, as: :string %>
+	<%= f.hidden_field :user_id, value: @user %>
 	<%= f.button :submit %>
 <% end %> 

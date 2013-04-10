@@ -1,4 +1,5 @@
 @import "cerulean.css";
+$greytext: #F0F0F0;
 
 /* HEADER UPDATES */
 body {
@@ -81,6 +82,10 @@ body.landing_page {
 	padding-left: 10px;
 	padding-right: 10px;
 	height: 40px;
+	p {
+		color: $greytext;
+		margin: 0px;
+	}
 }
 .thumbnail {
 	margin-bottom: 20px;
