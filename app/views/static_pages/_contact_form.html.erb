@@ -1,0 +1,12 @@
+<%= simple_form_for Message.new, html: {class: 'form-horizontal'} do |f| %>
+  <div class="control-group">
+    <%= f.input :name, :input_html => { value: if user_signed_in? then current_user.name end, class: 'span9' } %>
+    <%= f.input :email, :input_html => { value: if user_signed_in? then current_user.email end, class: 'span9' } %>
+    <%= f.input :content, as: :text, :input_html => { class: 'span9', rows: '5' } %>
+  </div>
+  <div class="btn-group-wrap">
+    <div class="btn-group">
+      <%= f.submit "Send Message", class: 'btn btn-primary'%>
+    </div>
+  </div>
+<% end %>

@@ -1,14 +1,36 @@
 @import "cerulean.css";
+// @import "cerulean-variables.less";
+// @import "bootstrap.css";
+
 $greytext: #F0F0F0;
 
+/* ALL PAGES */
+.divider {
+  *width: 100%;
+  height: 1px;
+  margin: 9px 1px;
+  *margin: -5px 0 5px;
+  overflow: hidden;
+  background-color: #e5e5e5;
+  border-bottom: 1px solid #ffffff;
+}
+.row {
+	margin-left: 0px;
+}
+
 /* HEADER UPDATES */
-body {
-  padding-top: 60px;
+@media (min-width: 979px) {
+	.main-content-container {
+	  padding-top: 60px;
+	}
 }
 @media (max-width: 979px) {
   body {
     padding-top: 0px;
   }
+}
+.search-query {
+	min-width: 220px;
 }
 
 /* LANDING PAGE UPDATES */
@@ -20,14 +42,10 @@ body.landing_page {
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
-	/* Set rules to fill background */
-	min-height: 100%;
-	min-width: 940px;
 	/* Set up proportionate scaling */
-	width: 100%;
+	// width: 100%;
 	height: auto;
 	/* Set up positioning */
-	position: fixed;
 	top: 0;
 	left: 0;
 	background-attachment:fixed;
@@ -47,14 +65,20 @@ body.landing_page {
 .main-photo {
 	padding-bottom: 10px;
 }
-.vcenter-button{
-  padding-top: 20px;
+.photo-title-button {
+  // display: block;
+  // position: absolute;
+  margin-top: 15px;
 }
 .shared-links{
 	padding-bottom: 20px;
 }
-.gnar-form{
+.gnar-button{
 	padding-bottom: 10px;
+}
+.rider-form{
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
 .photo-description{
 	p {
@@ -65,28 +89,257 @@ body.landing_page {
 		-webkit-margin-end: 0px;
 	}	
 }
- 
-/* PHOTO UPDATES */
+.photo-user{
+	h4 {
+		display: block;
+		-webkit-margin-before: 0.5em;
+		-webkit-margin-after: 0px;
+		-webkit-margin-start: 0px;
+		-webkit-margin-end: 0px;
+	}
+} 
+.edit-photo-button .btn {
+	margin-bottom: 10px;
+}
+h2 small a {
+	color: #999999;
+}
+
+/* PHOTO THUMBNAIL UPDATES */
 .photo-with-text {
 	position: relative;
   margin: 0 auto;
   display: table;
 }
+.thumbnails img {
+	-webkit-border-radius: 4px 4px 4px 4px;
+     -moz-border-radius: 4px 4px 4px 4px;
+          border-radius: 4px 4px 4px 4px;
+}
 .photo-text {
 	position: absolute;
-	bottom: 4px;
-	right: 4px;
+	bottom: 0px;
+	right: 0px;
+	padding: 0px;
 	background: #000;
 	background: rgba(0,0,0,0.65);
-	width: 180px;
-	padding-left: 10px;
-	padding-right: 10px;
+	width: 100%;
 	height: 40px;
+	  -webkit-border-radius: 0px 0px 4px 4px;
+     -moz-border-radius: 0px 0px 4px 4px;
+          border-radius: 0px 0px 4px 4px;
 	p {
 		color: $greytext;
 		margin: 0px;
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+	h4 {
+		margin: 0px;
+	}
+}
+.explore-more-photo {
+	position: relative;
+  margin: 0 auto;
+  display: table;
+}
+.explore-more {
+	position: absolute;
+	top: 50%;
+	right: 0px;
+	padding: 0px;
+	width: 100%;
+	p {
+	  font-family: 'Telex', sans-serif;
+	  font-weight: bold;
+	  line-height: 20px;
+	  color: #317eac;
+	  text-rendering: optimizelegibility;
+	  font-size: 17.5px;
 	}
 }
 .thumbnail {
 	margin-bottom: 20px;
+	-webkit-border-radius: 4px;
+     -moz-border-radius: 4px;
+          border-radius: 4px;
 }
+.search-pills li a {
+	padding-right: 30px;
+	padding-left: 30px;
+}
+
+/* MOUNTAINS PAGE */
+.my_mountains_form .btn {
+	margin-top: 0px;
+	margin-bottom: 10px;
+}
+
+/* FOOTER */
+#footer_wrapper {
+	position:relative;
+}
+.footer {
+	margin:0px auto;
+}
+.main-content-container {
+	min-height: 75%;
+}
+html, body {
+	height: 100%;
+}
+
+/* ABOUT US PAGE */
+#about {
+	padding-top: 0px;
+}
+.about-us-content section {
+	padding-top: 60px;
+}
+
+.bs-docs-sidebar {
+	@media (max-width: 480px) {
+		.nav-tabs {
+			position: static;
+	    width: auto;
+	    top: 0;
+	  }
+  }
+	@media (max-width: 767px) {
+		.nav-tabs {
+			position: static;
+    	width: auto;
+    	top: 0;
+		}
+	}
+	@media (min-width: 768px) and (max-width: 979px) {
+		.nav-tabs{
+			position: static;
+    	width: auto;
+    	top: 0;
+		}
+	}
+	@media (min-width: 980px) {.nav-tabs{width:200px}}
+	@media (min-width: 1200px) {.nav-tabs{width:250px}}
+
+	.icon-chevron-right {
+		float: right;
+		margin-top: 2px;
+		margin-right: -6px;
+		opacity: .25;
+	}
+}
+
+.nav-tabs > .active > a, 
+.nav-tabs > .active > a:hover, 
+.nav-tabs > .active > a:focus {
+	color: #ffffff;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2);
+	background-color: #2fa4e7;
+}
+
+/* EDIT PAGES */
+.form-well {
+	max-width: 700px;
+	float: none;
+	margin-left: auto;
+  margin-right: auto;
+  h2 {
+  	margin: 20px 0px 10px 0px;
+  }
+  .back-to-link {
+  	margin: 40px 0px 0px 0px;
+  }
+  .grey .active a,
+	.grey .active a:hover {
+    background-color: rgb(158, 158, 158);
+	}
+  .btn-group-wrap {
+    text-align: center;
+	}
+	.btn-group {
+    margin: 0 auto; 
+    text-align: center;
+    width: inherit;
+    display: inline-block;
+	}
+	.nav-pills li a {
+		padding-right: 25px;
+		padding-left: 25px;
+	}
+	.divider {
+	  *width: 100%;
+	  height: 1px;
+	  margin: 0 0 20px;
+	  overflow: hidden;
+	  background-color: #e5e5e5;
+	  border-bottom: 1px solid #ffffff;
+	}
+}
+.centered-pills { text-align:center;}
+.centered-pills ul.nav-pills { display:inline-block; }
+.centered-pills li { display:inline; }
+.centered-pills a { float:left; }
+* html .centered-pills ul.nav-pills { display:inline; } /* IE6 */
+*+html .centered-pills ul.nav-pills { display:inline; } /* IE7 */
+
+
+/* LOG IN FORM */
+.sign-in-button .btn {
+	padding-left: 25px;
+	padding-right: 25px;
+	margin-bottom: 15px;
+	margin-top: 5px;
+}
+
+.hidden {
+	display: none;
+}
+
+.sign-in-page {
+	width: 220px;
+	padding: 8px 20px 15px 20px;
+	background: white;
+	border: 2px solid #e3e3e3;
+	-webkit-border-radius: 4px;
+     -moz-border-radius: 4px;
+          border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+     -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+
+.sign-in-dynamic {
+	position: absolute;
+	right: 0;
+	margin: 65px 20px;
+}
+.sign-in-static {
+  float: none;
+	margin-left: auto;
+  margin-right: auto;	
+}
+
+/* SIGN UP FORM */
+.sign-up-form {
+	.control-label {
+		width: 60px;
+	}
+	.controls {
+		margin-left: 80px;
+	}
+	.sign-up-button .btn {
+		padding-left: 40px;
+		padding-right: 40px;
+		margin-bottom: 0px;
+		margin-top: 5px;
+	}
+	.well-large {
+		padding-bottom: 0px;
+		padding-top: 20px;
+		margin-bottom: 8px;
+	}
+}
+
+
+

@@ -14,7 +14,6 @@ class PhotosController < ApplicationController
     @photo = @mountain.photos.find(params[:id])
     @gnars = @photo.gnars
     @photo.view_count_update(current_user, request.remote_ip)
-    @photo_user = PhotoRelationship.where("role_id = ? AND photo_id = ?", RelationshipRole::CREATOR, params[:id]).first.user
   end
 
   def new
@@ -41,18 +40,38 @@ class PhotosController < ApplicationController
   end
 
   def update
-    @photo = @mountain.photos.find(params[:id])
-    # if @photo.photographers.where(photo_relationships: {role_id: RelationshipRole::CREATOR}).first != current_user
-      if @photo.update_attributes(params[:photo])
-        flash[:success] = "Photo updated"
-        @mountain = Mountain.find(params[:photo][:mountain_id])
-        redirect_to [@mountain, @photo]
-      else
-        render 'edit'
+    @photo = Photo.find(params[:id])
+    if @photo.update_attributes(params[:photo])
+      flash[:notice] = "Photo updated"
+      @mountain = Mountain.find_by_id(params[:photo][:mountain_id])
+      respond_to do |format|
+        format.html {redirect_to [@mountain, @photo]}
+        format.js
       end
-    # else
-      # redirect_to new_user_registration_path
-    # end
+    else
+      render 'edit'
+    end
+    
+  end
+
+  def add_rider
+    @photo = Photo.find(params[:photo_id])
+    @photo.rider_id = params[:photo][:rider_id]
+    @photo.save
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+
+  def remove_rider
+    @photo = Photo.find(params[:photo_id])
+    @photo.rider = nil
+    @photo.save
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
 end

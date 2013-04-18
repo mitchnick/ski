@@ -1,0 +1,15 @@
+<% provide(:title, "All Mountains") %>
+<div class="container">
+	<div class="row-fluid">
+		<% @regions.each do |region| %>
+			<div class="span4">
+				<h2><%= link_to region.name + " Region", region %></h2>
+				<ul>
+					<% region.mountains.each do |mountain| %>
+						<li><%= link_to mountain.name, mountain %></li>
+					<% end %> 
+				</ul>
+			</div>
+		<% end %>
+	</div>
+</div>

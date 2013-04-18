@@ -1,5 +1,6 @@
 <div class="my_mountains_form">	
-	<div class="want_to_go">
+	<!-- want_to_go -->
+	<div class="row-fluid">
 		<% if current_user.present? then %>
 			<% if @mymountains.where("user_id = ? AND type = ?", current_user.id, MyMountainRole::WANTTOGO).first %>
 				<%= render 'mountains/undo_want_to_go' %> 
@@ -10,7 +11,8 @@
 			<%= render 'mountains/want_to_go' %>
 		<% end %>
 	</div>
-	<div class="ive_been">
+	<!-- ive_been -->
+	<div class="row-fluid pull-right">
 		<% if current_user.present? then %>
 			<% if @mymountains.where("user_id = ? AND type = ?", current_user.id, MyMountainRole::HAVEBEEN).first %>
 				<%= render 'mountains/undo_ive_been' %>

@@ -1,4 +1,5 @@
 <div class="gnar_form">	
+	<div class="gnar-button">
 	<% if current_user.present? then %>
 		<% if @gnars.find_by_user_id(current_user.id) %>
 		<!-- User is signed in and has already given gnar -->
@@ -10,4 +11,7 @@
 	<% else %>
 		<%= render :partial => 'photos/gnar' %>
 	<% end %>
+	</div>
+	<div class="text-center">Total Gnar: <%= @photo.gnars.count %></div>
+	<div class="text-center">Total Views: <%= @photo.views %></div>
 </div>

@@ -1,7 +1,13 @@
-<h2> <%= @region.name %> </h2>
+<% provide(:title, @region.name) %>
+<% provide(:description, "Discover what beautiful views await for you in " + @region.name + ". Where to ski: the beauty of the mountain on the web.") %>
+<% provide(:keywords, @region.name + ", skiing, destinations, photos, pictures, snowboarding" ) %>
+<div class="page-header">
+	<h1><%= @region.name %> </h1>
+	<p class="hidden"> <%= @mountains.map { |m| m.name }.join ', ' %></p>
+</div>
 <ul class="thumbnails">
 	<% @mountains.each do |mountain| %>
 		<%= render 'shared/show_mountain', mountain: mountain %>
 	<% end %> 
-	<%= will_paginate @mountains %>
+	<div class="pagination pagination-centered"><%= will_paginate @mountains %></div>
 </ul>

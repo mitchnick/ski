@@ -4,11 +4,10 @@ class User < ActiveRecord::Base
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, 
-         :token_authenticatable, :confirmable,
-         :omniauthable, :omniauth_providers => [:facebook]
+         :token_authenticatable, :omniauthable, :omniauth_providers => [:facebook]
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible 	:first_name, :last_name, :email, :password, :password_confirmation, :remember_me, :bio, 
+  attr_accessible 	:name, :first_name, :last_name, :email, :password, :password_confirmation, :remember_me, :bio, 
   					:home_mountain, :home_town, :terms, :email_opt_in, :photo, :confirmed_at, :current_password, 
             :mountain_id, :provider, :uid
   # attr_accessible :title, :body
@@ -23,14 +22,16 @@ class User < ActiveRecord::Base
   has_many :mountains, :through => :my_mountains
   has_many :view_counts, dependent: :destroy
   has_many :photos
+  has_many :rider_photos, class_name: 'Photo', source: :photo, foreign_key: :rider_id
 
-  validates_presence_of :first_name, :last_name
+  validates_presence_of :name
   
   before_save :terms_agree
-
-  def name 
-    self.first_name + " " + self.last_name
-  end
+  before_save :name
+  
+  # def name 
+  #   self.name = self.first_name + " " + self.last_name
+  # end
 
   def has_been_to(mountain)
     mymountain = my_mountains.build
@@ -71,8 +72,7 @@ class User < ActiveRecord::Base
     user = User.where(:provider => auth.provider, :uid => auth.uid).first
     # user = User.where(:email => auth.email).first()
     unless user
-      user = User.create(first_name:auth.info.first_name,
-                           last_name:auth.info.last_name,
+      user = User.create(name:auth.info.name,
                            provider:auth.provider,
                            uid:auth.uid,
                            email:auth.info.email,

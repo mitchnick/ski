@@ -1,5 +1,5 @@
 <%= form_for(@mountain.my_mountains.where("user_id = ? AND type = ?", current_user.id, MyMountainRole::WANTTOGO).first, html: { method: :delete}, remote: true) do |f| %>
-	<%= button_tag(type: 'submit', class: 'btn btn-warning btn-mini') do %>
+	<%= button_tag(type: 'submit', class: 'btn btn-warning btn-mini span5 pull-right') do %>
 		<i class="icon-plane icon-white"></i> I Want to Go Here
 	<% end %> 
 <% end %>

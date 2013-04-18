@@ -1,9 +1,7 @@
-<ul>
-	<% @gnars.each do |gnar| %>
-		<div>
-			<%= link_to image_tag(gnar.photo.image_url(:thumb)), [gnar.photo.mountain, gnar.photo] %>
-			<%= link_to gnar.photo.name, [gnar.photo.mountain, gnar.photo] %> -- <%= gnar.photo.gnars.count %>
-		</div>
+<h3>Photos <%= @user.name %> thought were pretty awesome</h3>
+<ul class="thumbnails">
+	<% @gnar_photos.each do |photo| %>
+		<%= render 'shared/pic', :photo => photo %>
 	<% end %>
-	<%= will_paginate @gnars %>
+	<div class="pagination pagination-centered"><%= will_paginate @gnar_photos %></div>
 </ul>

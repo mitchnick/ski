@@ -1,13 +1,20 @@
 <% provide(:title, @user.name) %>
-<h1><%= @user.name %></h1>
-<div class="user_photo center"> <%= user_image(@user, "img-circle img-polaroid", 100) %> </div>
-<div class="center"><%= if current_user == @user then link_to "Edit User", edit_user_path(@user) end %></div>
+<% provide(:description, "See the top ski and snowboard pictures by " + @user.name + ". Where to ski: the beauty of the mountain on the web.") %>
+<% provide(:keywords, @user.name + ", photos, pictures, skiing, snowboarding, mountains" ) %>
+<div class="row-fluid text-center">
+	<h1 ><%= @user.name %></h1>
+  <p class="hidden"><%= @user.bio if @user.bio.present? %></p>
+	<div class="user_photo center"> <%= user_image(@user, "img-circle img-polaroid", 100) %> </div>
+</div>
 <ul class="nav nav-tabs" id="userTabs">
   <li class="active"><a href="#user_pics" data-toggle="tab">Pics</a></li>
   <li><a href="#user_bio" data-toggle="tab">Bio</a></li>
   <li><a href="#user_slopes" data-toggle="tab">My Slopes</a></li>
   <li><a href="#gnar_pics" data-toggle="tab">Favorites</a></li>
-</ul>
+  <% if current_user == @user then %>
+  	<li class="pull-right"><%= link_to "Edit Profile", edit_user_path(@user), class: "btn-primary" %></li>
+  <% end %>
+</ul>  
 <div class="tab-content">
   <div class="tab-pane active" id="user_pics"><%= render 'shared/pics' %></div>
   <div class="tab-pane" id="user_bio"><%= render 'users/user_bio' %></div>

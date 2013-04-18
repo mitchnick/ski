@@ -24,6 +24,7 @@ gem 'smarter_csv'
 # gems for forms
 gem 'simple_form'
 gem 'acts-as-taggable-on'
+gem 'active_attr'
 
 # gems used for photos
 gem 'carrierwave'

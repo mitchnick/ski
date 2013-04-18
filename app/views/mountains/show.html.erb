@@ -1,11 +1,16 @@
 <% provide(:title, @mountain.name) %>
+<% provide(:description, "Discover why " + @mountain.name + " may be your next skiing destination of choice. Where to ski: the beauty of the mountain on the web.") %>
+<% provide(:keywords, @mountain.name + ", " + @mountain.region.name + ", skiing, destination, photos, pictures, snowboarding" ) %>
 <div class="row-fluid">
-	<div class="span4 text-center"><%= render 'my_mountains_form' %></div>
+	<div class="span4 text-center"></div>
 	<div class="span4 text-center">
 		<h1><%= @mountain.name %></h1>
 		<h4><%= link_to @mountain.region.name, @mountain.region %></h4>
+		<p class="hidden"> <%= @mountain.description %></p>
 	</div>
-	<div class="span4 text-center"><%= link_to "Add a photo", new_mountain_photo_path(@mountain), class: "btn btn-primary" %></div>
+	<div class="span4">
+		<%= render 'my_mountains_form' %>
+	</div>
 </div>
 
 <!-- Add tabs here -->
@@ -15,6 +20,7 @@
 	  <li><a href="#mountain_info" data-toggle="tab">Mountain Info</a></li>
 	  <li><a href="#shoots_here" data-toggle="tab">Who Shoots Here</a></li>
 	  <li><a href="#rides_here" data-toggle="tab">Who Rides Here</a></li>
+	  <li class="pull-right"><%= link_to "Add a photo", new_mountain_photo_path(@mountain), class: "btn-primary" %></li>
 	</ul>
 </div>
 <div class="tab-content">

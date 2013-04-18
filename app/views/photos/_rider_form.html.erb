@@ -1,0 +1,14 @@
+<% if @photo.rider.nil?  and current_user == @photo.user then %>
+	<div class="divider"></div>
+	<%= simple_form_for [@mountain, @photo], url: new_rider_photo_path(@mountain, @photo), remote: true, html: {class: 'rider-form'} do |f| %>
+		<%= f.association :rider, as: :select, collection: User.all, label: false, value_method: :id, :input_html => {class: 'select2-container select2-container-multi', style: 'width:100%'}%>
+		<%= f.submit "Add Rider" %>
+	<% end %> 
+<% end %>
+<script type="text/javascript">
+$(document).ready(function() {
+	$("#photo_rider_id").select2({
+  	placeholder: "Tag a rider"
+  });
+ });
+</script>

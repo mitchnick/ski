@@ -1,8 +1,14 @@
-<%= simple_form_for @user do |f| %>
-	<%= f.input :first_name %>
-	<%= f.input :last_name %>
-	<%= f.input :bio, :input_html => { class: 'span6', rows: '3' } %>
-	<%= f.input :home_town %>
-	<%= f.input :mountain_id, as: :select, collection: Mountain.all, label_method: :name, value_method: :id, label: "Home Mountain"%>
-	<%= f.button :submit %>
+<%= simple_form_for @user, html: {class: 'form-horizontal'} do |f| %>
+	<div class="control-group">
+		<%= f.input :first_name, :input_html => { class: 'span9' }  %>
+		<%= f.input :last_name, :input_html => { class: 'span9' }  %>
+		<%= f.input :home_town, :input_html => { class: 'span9' } %>
+		<%= f.input :mountain_id, as: :select, collection: Mountain.all, label_method: :name, value_method: :id, label: "Home Mountain", :input_html => {class: 'select2-container select2-container-multi', style: 'width:75%'}%>
+		<%= f.input :bio, :input_html => { class: 'span9', rows: '5' } %>
+	</div>
+	<div class="btn-group-wrap">
+  	<div class="btn-group">
+			<%= f.button :submit, class: 'btn btn-primary'%>
+		</div>
+	</div>
 <% end %> 

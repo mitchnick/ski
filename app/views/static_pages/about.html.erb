@@ -1,5 +1,49 @@
 <% provide(:title, 'About us') %>
-<h1>About us</h1>
-<p>
- 	Out shredding now. More to come on this when I return from the mountain. 
-</p>
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span3 bs-docs-sidebar">
+			<ul id="scroll-tabs" class="affix nav nav-tabs nav-stacked">
+		    <li class="active"><a href="#about"><i class="icon-chevron-right"></i> About Us</a></li>
+		    <li class=""><a href="#built"><i class="icon-chevron-right"></i> Why we built this</a></li>
+		    <li class=""><a href="#pros"><i class="icon-chevron-right"></i> Pro Photographers</a></li>
+		    <li class=""><a href="#restrictions"><i class="icon-chevron-right"></i> Photo Restrictions</a></li>
+		    <li class=""><a href="#contact"><i class="icon-chevron-right"></i> Get in touch with us</a></li>
+		  </ul>
+		</div>
+		<div id= "scroll-pane" class="span9 about-us-content">
+			<section id="about" class="first-section">
+				<div class="page-header"><h1>About us</h1></div>
+				<p>We've been spending a lot of time shredding, so don't expect too much from this section for now. But as summer turns, we'll put away our boards and skis and start filling this in just a tad more.</p>
+			</section>
+			<section id="built">
+				<div class="page-header"><h1>Why we created wheretoski.co</h1></div>
+				<p>We created wheretoski.co as a way to see the mountain prior to visiting the mountain. Previously we would go to Google image search and type in the mountain name to see a variety of pictures. While this was good, we would have to filter though lots of garbage before we found the pictures we were looking for. Hopefully this site helps solve that problem over time.</p>
+			</section>
+			<section id="pros">
+				<div class="page-header"><h1>Professional Photographers</h1></div>
+				<p>We are really happy you made it here to wheretoski.co. We hope you use this site as a means to showcase your beautiful photography and to find new clients into the future. If there is anything we can do to make this site more beneficial to you or to help better support your business please do not hesistate to reach out.</p>
+			</section>
+			<section id="restrictions">
+				<div class="page-header"><h1>Photo Restrictions</h1></div>
+				<p>All photographs posted to the site have the following Creative Common licensing attributes unless specifically posted by the seller. All photos will remain under the ownership of the original photo creator. </p>
+				<ul>
+					<li><strong>Attribution:</strong> You let others copy, distribute, display, and perform your copyrighted work—and derivative works based upon it—but only if they give credit the way you request.</li>
+					<li><strong>Share Alike:</strong> You allow others to distribute derivative works only under a license identical to the license that governs your work.</li>
+					<li><strong>Non-Commerical:</strong> You let others copy, distribute, display, and perform your work—and derivative works based upon it—but for non-commercial purposes only.</li>
+					<li><strong>No Derivative Works:</strong> You let others copy, distribute, display, and perform only verbatim copies of your work, not derivative works based upon it.</li>
+				</ul>
+				<p>If this stuff interests you, you can read much more about it <a href="http://creativecommons.org/licenses/">here</a>.</p>
+			</section>
+			<section id="contact">
+				<div class="page-header"><h1>Get in touch</h1></div>
+				<p>We love to hear about users of wheretoski.co. You can reach us on our <a href="https://www.facebook.com/Wheretoboard">Facebook page</a> or via our <%= link_to "Contact Page", contact_path %>.</p>
+			</section>
+		</div>
+	</div>
+</div>
+
+<script>
+$(document).ready(function() {
+	$('body').scrollspy();
+});
+</script>

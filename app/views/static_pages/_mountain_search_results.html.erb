@@ -1,0 +1,6 @@
+<ul class="thumbnails">
+	<% @mountains.each do |mountain| %>
+		<%= render 'shared/show_mountain', mountain: mountain %>
+	<% end %>
+	<div class="pagination pagination-centered"><%= will_paginate @mountains %></div>
+</ul>

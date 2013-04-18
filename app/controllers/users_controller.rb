@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   def create
   	@user = User.new(params[:user])
     if @user.save
-      flash[:success] = "Welcome to Where to Ski!"
+      flash[:notice] = "Welcome to Where to Ski!"
       redirect_to @user
     else
       render 'new'
@@ -17,10 +17,10 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @photos = @user.relationship_photos.sort { |x,y| y.gnars.count <=> x.gnars.count }.paginate(page: params[:page], per_page: GlobalVar::PHOTOSPERPAGE)
-    @gnars = @user.gnars.paginate(page: params[:page], per_page: GlobalVar::PHOTOSPERPAGE)
-    @have_been = @user.my_mountains.where("type = ?", MyMountainRole::HAVEBEEN)
-    @want_to = @user.my_mountains.where("type = ?", MyMountainRole::WANTTOGO)
+    @photos = @user.photos.sort { |x,y| y.gnars.count <=> x.gnars.count }.paginate(page: params[:page], per_page: GlobalVar::PHOTOSPERPAGE)
+    @gnar_photos = @user.gnar_photos.paginate(page: params[:page], per_page: GlobalVar::PHOTOSPERPAGE)
+    @have_been = @user.my_mountains.where("type = ?", MyMountainRole::HAVEBEEN).paginate(page: params[:page], per_page: GlobalVar::PHOTOSPERPAGE)
+    @want_to = @user.my_mountains.where("type = ?", MyMountainRole::WANTTOGO).paginate(page: params[:page], per_page: GlobalVar::PHOTOSPERPAGE)
     if @user.mountain_id? then @home_mountain = Mountain.find(@user.mountain_id) end
   end
 
@@ -31,7 +31,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update_attributes(params[:user])
-      flash[:success] = "User updated"
+      flash[:notice] = "User updated"
       redirect_to @user
     else
       render 'edit'
@@ -43,7 +43,7 @@ class UsersController < ApplicationController
     if @user.update_with_password(params[:user])
       # Sign in the user by passing validation in case his password changed
       sign_in @user, :bypass => true
-      flash[:success] = "Password successfully updated"
+      flash[:notice] = "Password successfully updated"
       redirect_to @user
     else
       render "edit"
@@ -53,7 +53,9 @@ class UsersController < ApplicationController
   private
     def correct_user
       @user = User.find(params[:id])
-      flash[:notice] = "Hey, you aren't this person! You can only edit your own User record."
-      redirect_to @user unless @user == current_user
+      unless @user == current_user then 
+        flash[:error] = "Hey, you aren't this person! You can only edit your own User record."
+        redirect_to @user
+      end
     end
 end

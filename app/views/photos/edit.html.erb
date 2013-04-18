@@ -1,14 +1,27 @@
 <% provide(:title, "Edit photo") %> 
-<h1>Edit your photo</h1>
-
-<%= simple_form_for [@mountain, @photo] do |f| %>
-	<%= f.input :image %>
-	<%= f.input :name %>
-	<%= f.association :mountain, as: :select, collection: Mountain.all, label_method: :name, value_method: :id %>
-	<%= f.input :description, :input_html => { class: 'span6', rows: '3' }%>
-	<%= f.input :tag_list, :input_html => {class: 'select2-container select2-container-multi', style: 'width:40%'} %>
-	<%= f.button :submit %>
-<% end %> 
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="form-well">
+			<h2>Edit your photo</h2>
+			<div class="well well-large">
+				<%= simple_form_for [@mountain, @photo], html: {class: 'form-horizontal'} do |f| %>
+					<div class="control-group">
+						<%= f.input :image %>
+						<%= f.association :mountain, as: :select, collection: Mountain.all, label_method: :name, value_method: :id, :input_html => { class: 'span9' } %>
+						<%= f.input :name, :input_html => { class: 'span9' } %>
+						<%= f.input :description, :input_html => { class: 'span9', rows: '3' }%>
+						<%= f.input :tag_list, :input_html => {class: 'select2-container select2-container-multi', style: 'width:75%'} %>
+					</div>
+					<div class="btn-group-wrap">
+	  				<div class="btn-group">
+							<%= f.button :submit, class: 'btn btn-primary' %>
+						</div>
+					</div>
+				<% end %> 
+			</div>
+		</div>
+	</div>
+</div>
 <script type="text/javascript">
 	$("#photo_tag_list").select2({tags:[], width: 'resolve' });
 </script>

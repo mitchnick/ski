@@ -1,0 +1,16 @@
+<% @regions.each do |region| %>
+	<div class="page-header"><h2><%= region.name %></h2></div>
+	<ul class="thumbnails">
+	<% region.mountains.first(3).each do |mountain| %>
+		<%= render 'shared/show_mountain', mountain: mountain %>
+	<% end %>
+		<li class="span3">
+			<div class="thumbnail explore-more-photo">
+				<%= link_to image_tag('http://dummyimage.com/270x270/FCFCFC/FCFCFC.jpg'), region %>
+				<div class="explore-more">
+					<p class="text-center"><%= link_to "Explore more mountains in this region", region %></p>
+				</div>
+			</div>
+		</li>
+	</ul>
+<% end %>

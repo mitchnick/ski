@@ -37,22 +37,21 @@ Wheretoski::Application.configure do
 
   # ActionMailer Config
 
-  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  config.action_mailer.default_url_options = { :host => 'wheretoski.co' }
   config.action_mailer.delivery_method = :smtp
   # change to false to prevent email from being sent during development
-  config.action_mailer.perform_deliveries = false
+  config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.default :charset => "utf-8"
 
-
   config.action_mailer.smtp_settings = {
-    address: "smtpout.gmail.com",
-    port: "587",
-    domain: "gmail.com",
+    address: "smtpout.secureserver.net",
+    port: 80,
+    domain: "www.wheretoski.co",
     authentication: "plain",
     enable_starttls_auto: true,
-    user_name: ENV["DEV_EMAIL_USER"],
-    password: ENV["DEV_EMAIL_PASS"]
+    user_name: ENV["EMAIL_USER"],
+    password: ENV["EMAIL_PASS"]
   }
-  
+
 end

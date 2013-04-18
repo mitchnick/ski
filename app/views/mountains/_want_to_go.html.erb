@@ -1,7 +1,7 @@
 <%= form_for @mountain.my_mountains.build, remote: true do |f| %>
 	<%= f.hidden_field :mountain_id %>
 	<%= f.hidden_field :role_type, :value => MyMountainRole::WANTTOGO %>
-	<%= button_tag(type: 'submit', class: 'btn btn-mini') do %>
-		<i class="icon-plane icon-white"></i>  I Want to Go Here
+	<%= button_tag(type: 'submit', class: 'btn btn-mini span5 pull-right') do %>
+		<i class="icon-plane"></i>  I Want to Go Here
 	<% end %> 
 <% end %>

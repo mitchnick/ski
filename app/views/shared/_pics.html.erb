@@ -1,18 +1,6 @@
 <ul class="thumbnails">
 	<% @photos.each do |photo| %>
-		<div>
-			<li class="span3">
-				<div class="thumbnail photo-with-text">
-					<%= link_to image_tag(photo.image_url(:thumb)), [photo.mountain, photo]%>
-					<div class="photo-text">
-						<p><strong><%= link_to photo.name, [photo.mountain, photo]%></strong></p>
-						<% if photo.user.present? then %>
-							<p><em>Photo by:</em> <%= link_to photo.user.name, photo.user %></p>
-						<% end %>
-					</div>
-				</div>
-			</li>
-		</div>
+		<%= render 'shared/pic', :photo => photo %>
 	<% end %>
-	<%= will_paginate @photos %>
+	<div class="pagination pagination-centered"><%= will_paginate @photos %></div>
 </ul>

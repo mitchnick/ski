@@ -1,7 +1,17 @@
 <%= simple_form_for [@mountain, @photo], remote: true do |f| %>
 	<%= f.input :tag_list, label: false, :input_html => {class: 'select2-container select2-container-multi', style: 'width:100%'}  %>
+	<%= f.submit "Update" %>
 <% end %>
 
 <script type="text/javascript">
-	$("#photo_tag_list").select2({tags:[], width: 'resolve' });
+	$("#photo_tag_list").select2({tags:[], width: 'resolve', placeholder: "Add photo tags" });
+	$("#photo_tag_list").on("change", function() { 
+		$("#photo_tag_list_val").html($("#photo_tag_list").val());
+	});
+ 
+	$("#photo_tag_list").select2("container").find("ul.select2-choices").sortable({
+    containment: 'parent',
+    start: function() { $("#photo_tag_list").select2("onSortStart"); },
+    update: function() { $("#photo_tag_list").select2("onSortEnd"); }
+	});
 </script>

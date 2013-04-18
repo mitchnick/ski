@@ -4,6 +4,7 @@ ActiveAdmin.register User do
     column :email                     
     column :first_name
     column :last_name
+    column :name
     column :current_sign_in_at
     column :last_sign_in_at           
     column :sign_in_count             
@@ -19,6 +20,7 @@ ActiveAdmin.register User do
       f.input :email
       f.input :first_name
       f.input :last_name
+      f.input :name
       f.input :bio
       f.input :home_mountain
       f.input :home_town

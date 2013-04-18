@@ -13,4 +13,8 @@ module UsersHelper
     end
 	end
 
+	def user_bio_filled_in?(user, home_mountain)
+		user.bio.present? || home_mountain.present? || user.home_town.nil?
+	end
+
 end

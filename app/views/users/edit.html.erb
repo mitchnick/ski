@@ -1,13 +1,38 @@
 <% provide(:title, "Edit user") %> 
-<div class="tabbable tabs-left">
-	<ul class="nav nav-tabs" id="editUser">
-	  <li class="active"><a href="#profile_form" data-toggle="tab">Profile Details</a></li>
-	  <li><a href="#avatar_form" data-toggle="tab">Your Picture</a></li>
-	  <li><a href="#credentials_form" data-toggle="tab">Email / Password</a></li>
-	</ul>
-	<div class="tab-content">
-	  <div class="tab-pane active" id="profile_form"><%= render 'profile_form' %></div>
-	  <div class="tab-pane" id="avatar_form"><%= render 'avatar_form' %></div>
-	  <div class="tab-pane" id="credentials_form"><%= render 'credentials_form' %></div>
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="form-well">
+			<div class="row-fluid">
+				<div class="span8">
+					<h2>Edit your profile</h2>
+				</div>
+				<div class="span4">
+					<p class="text-right back-to-link"><%= link_to "Back to profile", :back %></p>
+				</div>
+			</div>
+			<div class="well well-large form-well">
+				<div class="centered-pills">
+					<ul class="nav nav-pills grey" id="editUser">	
+					  <li class="active"><a href="#profile_form" data-toggle="tab">Profile Details</a></li>
+					  <li><a href="#avatar_form" data-toggle="tab">Your Picture</a></li>
+					  <li><a href="#credentials_form" data-toggle="tab">Email / Password</a></li>
+					</ul>
+				</div>
+				<div class="divider"></div>
+				<div class="tab-content">
+				  <div class="tab-pane active" id="profile_form"><%= render 'profile_form' %></div>
+				  <div class="tab-pane" id="avatar_form"><%= render 'avatar_form' %></div>
+				  <div class="tab-pane" id="credentials_form"><%= render 'credentials_form' %></div>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
+
+<script>
+$(document).ready(function() {  
+	$("#user_mountain_id").select2({
+  	placeholder: "Select Your Home Mountain"
+  });
+});
+</script>

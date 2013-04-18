@@ -1,13 +1,15 @@
 <% provide(:title, @photo.name) %>
+<% provide(:description, @photo.name + " at " + @photo.mountain.name + " mountain and ski resort in " + @photo.mountain.region.name ) %>
+<% provide(:keywords, @photo.mountain.name + ", " + @photo.mountain.region.name + ", " + @photo.user.name + ", " + @photo.tag_list.to_s ) %>
 <div class="container-fluid">
 	<div class="row-fluid">
 		<div class="span7">
-			<h2> <%= @photo.name %></h2>
-
-		</div>
-		<% if current_user == @photo_user then %>
-			<div class="span2 text-right vcenter-button">
-				<%= link_to "Edit Photo", edit_mountain_photo_path(@mountain, @photo), class: "btn" %>
+			<h2> <%= @photo.name %> <small> @ <%= link_to @photo.mountain.name, @photo.mountain %> </small></h2>
+			<p class="hidden"> <%= @photo.description + @mountain.description %> </p>
+		</div>		
+		<% if current_user == @photo.user then %>
+			<div class="span2 edit-photo-button">
+			<%= link_to "Edit Photo", edit_mountain_photo_path(@mountain, @photo), class: "btn photo-title-button pull-right" %>
 			</div>
 		<% end %>		
 	</div>
@@ -16,43 +18,46 @@
 	<div class="row-fluid">
 		<div class="span9">
 			<!-- Left section -->
-			<div class="main-photo"><%= image_tag @photo.image_url if @photo.image? %></div>
+			<div class="main-photo"><%= image_tag(@photo.image_url, alt: photo_alt_description(@photo)) %></div>
 			<div class="shared-links"><%= render 'shared/share_links' %></div>
 			<div id="disqus_thread"></div>
 			<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 		</div>
 		<div class="span3">
 			<!-- Right section -->
-			<div class="row-fluid well">
+			<div class="row-fluid well photo-user">
 				<!-- Photographer Section -->
-				<% if @photo_user.present? then %>
-					<div class="span4 user_photo"> <%= link_to user_image(@photo_user, '',70), @photo_user %> </div>
-					<div class="span8"><p>Photo By:</p><h4> <%= link_to @photo_user.name, @photo_user %></h4></div>
+				<% if @photo.user.present? then %>
+					<div class="span4 user_photo"> <%= link_to user_image(@photo.user, '',70), @photo.user %> </div>
+					<div class="span8"><p>Photo By:</p><h4> <%= link_to @photo.user.name, @photo.user %></h4></div>
 				<% end %>
 			</div>
+			<!-- Rider Section -->
+			<div class="show-photo-rider"><%= render 'photos/show_rider' %></div>
 			<div class="row-fluid well">
 				<!-- Views and Gnars section -->
 				<div class="span12 gnar-form"><%= render 'gnar_form' %></div>
-				<div class="text-center">Total Gnar: <%= @photo.gnars.count %></div>
-				<div class="text-center">Total Views: <%= @photo.views %></div>
 			</div>
 			<div class="row-fluid well photo-description">
 				<!-- Photo description and tags -->
 				<p><strong>Mountain:</strong> <%= link_to @photo.mountain.name, @photo.mountain %><br>
 				<p><strong>Region:</strong> <%= link_to @photo.mountain.region.name, @photo.mountain.region %></p>
-				<% if @photo.description.length > 0 || current_user == @photo_user then %>
+				<% if @photo.description.length > 0 || current_user == @photo.user then %>
 					<p><strong>About the Photo:</strong> <%= @photo.description %>
 					<%= unless @photo.description.present? then link_to "Add a description", edit_mountain_photo_path(@mountain, @photo) end %>
 					</p>
 				<% end %>
-				<% if @photo.tag_list.length > 0 || current_user == @photo_user then %>
-					<strong>Tags:</strong> 
-					<% if current_user == @photo_user then %>
+				<% if @photo.tag_list.length > 0 || current_user == @photo.user then %>
+					<% if current_user == @photo.user then %>
+						<div class="divider"></div>
 						<div id="photo_tags"><%= render 'tags_form' %></div>
 					<% else %>
+						<strong>Tags:</strong> 
 						<%= @photo.tag_list %>
 					<% end %>
 				<% end %>
+				<!-- Prompt to add a rider if there is none listed -->
+				<div class="add-photo-rider"><%= render 'photos/rider_form' %></div>
 			</div>
 			<% if @photo.exif_data? then %>
 				<div class="row-fluid well camera-settings">

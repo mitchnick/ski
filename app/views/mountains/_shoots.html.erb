@@ -2,12 +2,12 @@
 	<% @shoots.each do |shoots| %>
 		<div>
 			<li class="span2">
-				<div class="text-center"</div>					
-					<%= user_image(shoots, "img-circle img-polaroid", 100) %>
+				<div class="text-center">
+					<%= link_to user_image(shoots, "img-circle img-polaroid", 100), shoots %></br>
 					<%= link_to shoots.name, shoots %>
 				</div>
 			</li>
 		</div>
 	<% end %>
-	<%= will_paginate @shoots %>
+	<div class="pagination pagination-centered"><%= will_paginate @shoots %></div>
 </ul>

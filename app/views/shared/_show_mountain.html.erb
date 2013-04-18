@@ -1,6 +1,11 @@
-<li class="span3">
-	<div class="thumbnail text-center">
-		<%= if mountain.photos.count >=1 then link_to image_tag(mountain.top_image.image_url(:thumb)), [mountain] end %>
-		<h4><%= link_to mountain.name, mountain %></h4>
-	</div>
-</li>
+<div>
+	<li class="span3">
+		<div class="thumbnail photo-with-text">
+			<%= link_to image_tag(mountain.top_image.image_url(:thumb), alt: "Most beautiful picture of " + mountain.name + " mountan and ski resort in " + mountain.region.name), mountain %>
+			<div class="photo-text">
+				<h4 class="text-center"><%= link_to mountain.name, mountain %></h4>  
+				<h4 class="text-center"><small><%= link_to mountain.region.name, mountain.region %></small></h4>
+			</div>
+		</div>
+	</li>
+</div>

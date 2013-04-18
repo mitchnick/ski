@@ -1,3 +1,3 @@
 module GlobalVar
-	PHOTOSPERPAGE = 25
+	PHOTOSPERPAGE = 20
 end

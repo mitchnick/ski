@@ -23,9 +23,10 @@ class Mountain < ActiveRecord::Base
 
   has_many :photos
   has_many :my_mountains, dependent: :destroy
-  has_many :photo_relationships, through: :photos
-  has_many :photographers, class_name: 'User', source: :user, through: :photo_relationships
   has_many :users, through: :my_mountains
+  has_many :photo_relationships, through: :photos  
+  has_many :riders, class_name: 'User', through: :photos
+  has_many :photographers, class_name: 'User', through: :photos
   belongs_to :region
 
   validates :name,	presence: true, length: { maximum: 50 }

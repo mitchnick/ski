@@ -1,0 +1,13 @@
+<div>
+	<li class="span3">
+		<div class="thumbnail photo-with-text">
+			<%= link_to image_tag(photo.image_url(:thumb), alt: photo_alt_description(photo)), [photo.mountain, photo]%>
+			<div class="photo-text">
+				<p><strong><%= link_to photo.name, [photo.mountain, photo]%></strong></p>
+				<% if photo.user.present? then %>
+					<p><em>Photo by:</em> <%= link_to photo.user.name, photo.user %></p>
+				<% end %>
+			</div>
+		</div>
+	</li>
+</div>

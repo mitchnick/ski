@@ -1,10 +1,11 @@
+<% provide(:description, "Discover the beauty of the mountain on the web. Find top skiing and snowboarding photos of your favorite ski resorts at wheretoski.co") %>
 <% if user_signed_in? %> 
-	<h3>Hottest Pics</h3>
+	<div class="page-header"><h1 class="text-center">Hottest Pics</h1></div>
 	<div class="row">
 		<%= render 'shared/pics' %>
 	</div>
 <% else %> 
-<div class="span6 offset6 text-center top-spacing-medium">
+<div class="span6 offset1 text-center top-spacing-medium">
 	<div class="well see-through">
 	  <h1>Where to Ski</h1>
 	  <p class="lead">The beauty of the mountain on the web</p>

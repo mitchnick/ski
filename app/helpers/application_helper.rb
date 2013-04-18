@@ -10,4 +10,11 @@ module ApplicationHelper
 		end
 	end
 
+	def photo_alt_description(photo)
+		photo.mountain.name + " mountain and ski resort in " + photo.mountain.region.name + ": " + photo.name + ". " + photo.description + "  -Photo by " + photo.user.name
+	end
+	
+	def search_results_show_mountain?
+		@mountains.length > 0 || @regions.length == 0
+	end
 end

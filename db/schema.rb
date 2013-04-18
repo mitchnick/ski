@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130410162045) do
+ActiveRecord::Schema.define(:version => 20130418144023) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -52,6 +52,9 @@ ActiveRecord::Schema.define(:version => 20130410162045) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  add_index "gnars", ["photo_id"], :name => "index_gnars_on_photo_id"
+  add_index "gnars", ["user_id"], :name => "index_gnars_on_user_id"
 
   create_table "mountains", :force => true do |t|
     t.string   "name"
@@ -113,10 +116,13 @@ ActiveRecord::Schema.define(:version => 20130410162045) do
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
     t.integer  "user_id"
+    t.integer  "rider_id"
   end
 
   add_index "photos", ["name", "mountain_id", "views"], :name => "index_photos_on_name_and_photographer_and_mountain"
+  add_index "photos", ["rider_id"], :name => "index_photos_on_rider_id"
   add_index "photos", ["user_id"], :name => "index_photos_on_user_id"
+  add_index "photos", ["views"], :name => "index_photos_on_views"
 
   create_table "regions", :force => true do |t|
     t.string   "name"
@@ -125,6 +131,7 @@ ActiveRecord::Schema.define(:version => 20130410162045) do
     t.string   "slug"
   end
 
+  add_index "regions", ["name"], :name => "index_regions_on_name"
   add_index "regions", ["slug"], :name => "index_regions_on_slug"
 
   create_table "taggings", :force => true do |t|
@@ -174,10 +181,12 @@ ActiveRecord::Schema.define(:version => 20130410162045) do
     t.string   "uid"
     t.string   "oauth_token"
     t.datetime "oauth_expires_at"
+    t.string   "name"
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["name"], :name => "index_users_on_name"
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
   create_table "view_counts", :force => true do |t|
@@ -188,5 +197,8 @@ ActiveRecord::Schema.define(:version => 20130410162045) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  add_index "view_counts", ["photo_id"], :name => "index_view_counts_on_photo_id"
+  add_index "view_counts", ["user_id"], :name => "index_view_counts_on_user_id"
 
 end

@@ -1,13 +1,15 @@
-<h3>Places <%= @user.first_name %> Has Been</h3>
-<ul>
+<h3>Places <%= @user.name %> Has Been</h3>
+<ul class="thumbnails">
 	<% @have_been.each do |h| %>
 		<%= render 'shared/show_mountain', mountain: h.mountain %>
 	<% end %>
+	<div class="pagination pagination-centered"><%= will_paginate @have_been %></div>
 </ul>
 
-<h3>Places <%= @user.first_name %> Wants to Go</h3>
-<ul>
+<h3>Places <%= @user.name %> Wants to Go</h3>
+<ul class="thumbnails">
 	<% @want_to.each do |h| %>
 		<%= render 'shared/show_mountain', mountain: h.mountain %>
 	<% end %>
+	<div class="pagination pagination-centered"><%= will_paginate @want_to %></div>
 </ul>

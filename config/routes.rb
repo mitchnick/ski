@@ -30,10 +30,16 @@ Wheretoski::Application.routes.draw do
   resources :gnars
   resources :my_mountains
   resources :view_counts
+  resources :messages
 
   match '/about',   to: 'static_pages#about'
   match '/contact', to: 'static_pages#contact'
   match '/search',  to: 'static_pages#search'
+  match '/all_mountains',  to: 'static_pages#all_mountains'
+  # match '/add_rider', to: 'photos#add_rider', as: :add_rider_photo
+  match '/:mountain_id/photo/:photo_id/add_rider', to: 'photos#add_rider', :as => :new_rider_photo
+  match '/:mountain_id/photo/:photo_id/remove_rider', to: 'photos#remove_rider', :as => :remove_rider_photo
+
   match 'auth/facebook/callback' => redirect("/users/auth/facebook")
 
   # match 'auth/:provider/callback', to: 'authentications#create'
@@ -102,7 +108,7 @@ Wheretoski::Application.routes.draw do
   # match ':controller(/:action(/:id))(.:format)'
 end
 #== Route Map
-# Generated on 27 Mar 2013 16:42
+# Generated on 11 Apr 2013 23:21
 #
 #         batch_action_admin_admin_users POST       /admin/admin_users/batch_action(.:format)         admin/admin_users#batch_action
 #                      admin_admin_users GET        /admin/admin_users(.:format)                      admin/admin_users#index
@@ -171,6 +177,14 @@ end
 #                             admin_user GET        /admin/users/:id(.:format)                        admin/users#show
 #                                        PUT        /admin/users/:id(.:format)                        admin/users#update
 #                                        DELETE     /admin/users/:id(.:format)                        admin/users#destroy
+#         batch_action_admin_view_counts POST       /admin/view_counts/batch_action(.:format)         admin/view_counts#batch_action
+#                      admin_view_counts GET        /admin/view_counts(.:format)                      admin/view_counts#index
+#                                        POST       /admin/view_counts(.:format)                      admin/view_counts#create
+#                   new_admin_view_count GET        /admin/view_counts/new(.:format)                  admin/view_counts#new
+#                  edit_admin_view_count GET        /admin/view_counts/:id/edit(.:format)             admin/view_counts#edit
+#                       admin_view_count GET        /admin/view_counts/:id(.:format)                  admin/view_counts#show
+#                                        PUT        /admin/view_counts/:id(.:format)                  admin/view_counts#update
+#                                        DELETE     /admin/view_counts/:id(.:format)                  admin/view_counts#destroy
 #            batch_action_admin_comments POST       /admin/comments/batch_action(.:format)            admin/comments#batch_action
 #                         admin_comments GET        /admin/comments(.:format)                         admin/comments#index
 #                                        POST       /admin/comments(.:format)                         admin/comments#create
@@ -214,6 +228,13 @@ end
 #                                   user GET        /users/:id(.:format)                              users#show
 #                                        PUT        /users/:id(.:format)                              users#update
 #                                        DELETE     /users/:id(.:format)                              users#destroy
+#                                regions GET        /regions(.:format)                                regions#index
+#                                        POST       /regions(.:format)                                regions#create
+#                             new_region GET        /regions/new(.:format)                            regions#new
+#                            edit_region GET        /regions/:id/edit(.:format)                       regions#edit
+#                                 region GET        /regions/:id(.:format)                            regions#show
+#                                        PUT        /regions/:id(.:format)                            regions#update
+#                                        DELETE     /regions/:id(.:format)                            regions#destroy
 #                        mountain_photos GET        /mountains/:mountain_id/photos(.:format)          photos#index
 #                                        POST       /mountains/:mountain_id/photos(.:format)          photos#create
 #                     new_mountain_photo GET        /mountains/:mountain_id/photos/new(.:format)      photos#new
@@ -249,6 +270,13 @@ end
 #                            my_mountain GET        /my_mountains/:id(.:format)                       my_mountains#show
 #                                        PUT        /my_mountains/:id(.:format)                       my_mountains#update
 #                                        DELETE     /my_mountains/:id(.:format)                       my_mountains#destroy
+#                            view_counts GET        /view_counts(.:format)                            view_counts#index
+#                                        POST       /view_counts(.:format)                            view_counts#create
+#                         new_view_count GET        /view_counts/new(.:format)                        view_counts#new
+#                        edit_view_count GET        /view_counts/:id/edit(.:format)                   view_counts#edit
+#                             view_count GET        /view_counts/:id(.:format)                        view_counts#show
+#                                        PUT        /view_counts/:id(.:format)                        view_counts#update
+#                                        DELETE     /view_counts/:id(.:format)                        view_counts#destroy
 #                                  about            /about(.:format)                                  static_pages#about
 #                                contact            /contact(.:format)                                static_pages#contact
 #                                 search            /search(.:format)                                 static_pages#search

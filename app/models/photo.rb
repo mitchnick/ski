@@ -1,7 +1,7 @@
 class Photo < ActiveRecord::Base
   attr_accessible :name, :description, :camera_type, :lens_type, :aperture, :shutter_speed, :focal_length, 
     :views, :license_attr, :city, :state, :zipcode, :image, :remote_image_url, :image_thumb, :width, :height, 
-  	:taken_time, :tag_list, :gear_list, :mountain_id, :image_url, :user_id
+  	:taken_time, :tag_list, :gear_list, :mountain_id, :image_url, :user_id, :rider_id
 
   belongs_to :mountain 
   has_many :photo_relationships, dependent: :destroy
@@ -11,6 +11,7 @@ class Photo < ActiveRecord::Base
   has_many :users, :through => :gnars
   has_many :view_counts, dependent: :destroy
   belongs_to :user
+  belongs_to :rider, class_name: 'User'
 
   acts_as_taggable
   acts_as_taggable_on :gear

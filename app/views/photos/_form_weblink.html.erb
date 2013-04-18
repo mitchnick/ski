@@ -1,11 +1,17 @@
-<%= simple_form_for ([@mountain, @photo]) do |f| %>
-  <%= f.input :remote_image_url %>
- 	<%= f.input :name %>
-	<% unless @mountain.id? %>
-		<%= f.input :mountain %>
-	<% end %>
-  <%= f.input :description, :input_html => { class: 'span6', rows: '3' } %>
-	<%= f.input :tag_list, as: :string %>
-	<%= f.hidden_field :user_id, value: @user %>
-	<%= f.button :submit %>
+<%= simple_form_for ([@mountain, @photo]), html: {class: 'form-horizontal'} do |f| %>
+  <div class="control-group">
+  	<%= f.input :remote_image_url, :input_html => { class: 'span9' } %>
+	 	<%= f.input :name, :input_html => { class: 'span9' }  %>
+		<% unless @mountain.id? %>
+			<%= f.input :mountain, :input_html => { class: 'span9' }  %>
+		<% end %>
+	  <%= f.input :description, :input_html => { class: 'span9', rows: '3' } %>
+		<%= f.input :tag_list, :input_html => {class: 'select2-container select2-container-multi', id: 'photo_tag_list_weblink', style: 'width:75%'} %>
+		<%= f.hidden_field :user_id, value: @user %>
+	</div>
+	<div class="btn-group-wrap">
+  	<div class="btn-group">
+			<%= f.button :submit, class: 'btn btn-primary' %>
+		</div>
+	</div>
 <% end %> 

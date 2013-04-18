@@ -1,14 +1,21 @@
-<h2>Change your picture</h2>
 <p>Your picture injects a little more personality into your profile and helps people recognize “you” across WhereToSki.</p>
-<h4 class="center">Your current picture <small>- As seen around the site</small></h4>
-<div class="user_photo center"> 
-	<%= user_image(@user, "img-polaroid", 100) %> 
-	<%= user_image(@user, "img-circle img-polaroid", 100) %>
-</div>
-<h4 class="center">Choose a new picture</h4>
-<div class="center">
-<%= simple_form_for ([@user]) do |f| %>
-	<%= f.input :photo, label: "Choose image" %>
-	<%= f.button :submit, :label => "Upload Image" %>
-<% end %> 
+<div class="container-fluid">
+	<div class="row-fluid">	
+		<div class="span6">
+			<h4 class="text-center">Your current picture</h4>
+			<p class="text-center muted">As seen around the site</p>
+			<div class="user_photo text-center"> <%= user_image(@user, "img-circle img-polaroid", 100) %></div>
+		</div>
+		<div class="span6">
+			<h4 class="text-center">Choose a new picture</h4>
+			<p class="text-center muted">Upload a shinny new profile pic</p></br>
+			<div class="text-center">
+				<%= simple_form_for ([@user]) do |f| %>
+					<%= f.input :photo, label: false , :input_html => { class: 'span9' } %>
+					</br>
+					<%= f.button :submit, "Upload Image", class: 'btn btn-primary' %>
+				<% end %> 
+			</div>
+		</div>
+	</div>
 </div>
