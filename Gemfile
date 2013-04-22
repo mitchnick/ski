@@ -31,6 +31,12 @@ gem 'carrierwave'
 gem 'rmagick'
 gem 'exifr'
 
+# gems for deploying to the server
+gem 'capistrano'
+platforms :ruby do # linux
+  gem 'unicorn'
+end
+
 group :development, :test do
   gem 'sqlite3', '1.3.5'
   gem 'database_cleaner'
