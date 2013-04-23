@@ -9,7 +9,8 @@ set :use_sudo, false
 
 set :scm, "git"
 set :repository, "."
-set :deploy_via, :copy
+set :deploy_via, :remote_cache
+# set :deploy_via, :copy
 set :branch, "master"
 
 require "bundler/capistrano"
