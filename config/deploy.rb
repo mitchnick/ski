@@ -8,9 +8,10 @@ set :deploy_to, "/home/#{user}/apps/#{application}"
 set :use_sudo, false
 
 set :scm, "git"
-set :repository, "."
-set :deploy_via, :remote_cache
+# set :repository, "."
 # set :deploy_via, :copy
+set :deploy_via, :remote_cache
+set :repository,  "git@github.com:mitchnick/ski.git"
 set :branch, "master"
 
 require "bundler/capistrano"
