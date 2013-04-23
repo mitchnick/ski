@@ -5,12 +5,17 @@ server "198.58.101.242", :web, :app, :db, primary: true
 set :application, "wheretoski"
 set :user, "deployer"
 set :deploy_to, "/home/#{user}/apps/#{application}"
-set :deploy_via, :remote_cache
 set :use_sudo, false
 
 set :scm, "git"
-set :repository, "git@github.com:eifion/#{application}.git"
+set :repository, "."
+set :deploy_via, :copy
 set :branch, "master"
+
+require "bundler/capistrano"
+set :default_environment, {
+'PATH' => "$HOME/.rbenv/shims:$HOME/.rbenv/bin:$PATH"
+}
 
 default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
@@ -29,7 +34,7 @@ namespace :deploy do
     sudo "ln -nfs #{current_path}/config/nginx.conf /etc/nginx/sites-enabled/#{application}"
     sudo "ln -nfs #{current_path}/config/unicorn_init.sh /etc/init.d/unicorn_#{application}"
     run "mkdir -p #{shared_path}/config"
-    put File.read("config/database.example.yml"), "#{shared_path}/config/database.yml"
+    put File.read("config/database.yml"), "#{shared_path}/config/database.yml"
     puts "Now edit the config files in #{shared_path}."
   end
   after "deploy:setup", "deploy:setup_config"
