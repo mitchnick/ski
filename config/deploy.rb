@@ -12,10 +12,10 @@ set :repository, "."
 set :deploy_via, :copy
 set :branch, "master"
 
-# require "bundler/capistrano"
-# set :default_environment, {
-# 'PATH' => "$HOME/.rbenv/shims:$HOME/.rbenv/bin:$PATH"
-# }
+require "bundler/capistrano"
+set :default_environment, {
+'PATH' => "$HOME/.rbenv/shims:$HOME/.rbenv/bin:$PATH"
+}
 
 default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
