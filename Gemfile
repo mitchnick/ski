@@ -31,11 +31,15 @@ gem 'carrierwave'
 gem 'rmagick'
 gem 'exifr'
 
-# gems for deploying to the server
+# gems for deploying to the server and for production
 gem 'capistrano'
-platforms :ruby do # linux
+group :production do
+  gem 'pg'
+  gem 'activerecord-postgresql-adapter'
   gem 'unicorn'
 end
+# platforms :ruby do # linux
+# end
 
 group :development, :test do
   gem 'sqlite3', '1.3.5'
@@ -67,8 +71,3 @@ group :test do
   gem 'capybara-screenshot'
   gem 'timecop'
 end 
-
-group :production do
-  gem 'pg'
-  gem 'activerecord-postgresql-adapter'
-end
