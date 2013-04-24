@@ -23,9 +23,9 @@ production:
   encoding: unicode
   database: wheretoski_production
   pool: 5
-  timeout: 5000
+  host: localhost
   username: wheretoski
-  pass: ENV["DB_PASS"]
+  password: ENV["DB_PASS"]
 
 cucumber:
   <<: *test
