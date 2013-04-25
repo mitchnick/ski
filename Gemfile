@@ -33,9 +33,9 @@ gem 'exifr'
 
 # gems for deploying to the server and for production
 gem 'capistrano'
-gem 'unicorn'
 
 group :production do
+  gem 'unicorn'
   gem 'pg'
   gem 'activerecord-postgresql-adapter'
 end

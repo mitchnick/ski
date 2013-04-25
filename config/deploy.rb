@@ -6,6 +6,7 @@ set :application, "wheretoski"
 set :user, "deployer"
 set :deploy_to, "/home/#{user}/apps/#{application}"
 set :use_sudo, false
+set :keep_releases, 4
 
 set :scm, "git"
 # set :repository, "."
