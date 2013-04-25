@@ -54,18 +54,20 @@ class Photo < ActiveRecord::Base
   end
   
   def get_photo_attributes
-    exif = EXIFR::JPEG.new(image.file.file)  
-    self.width = exif.width
-    self.height = exif.height
-    self.camera_type = exif.model
-    self.aperture = exif.f_number.to_f
-    self.shutter_speed = exif.exposure_time.to_s
-    self.focal_length = exif.focal_length.to_f
-    self.taken_time = exif.date_time
-    # self.gps_lat = 
-    # self.gps_lng
-    # self.lens_type =      
-    # self.iso = exif.iso_speed_ratings
+    if EXIFR::JPEG.new('IMG_6841.JPG').exif? then 
+      exif = EXIFR::JPEG.new(image.file.file)
+      self.width = exif.width
+      self.height = exif.height
+      self.camera_type = exif.model
+      self.aperture = exif.f_number.to_f
+      self.shutter_speed = exif.exposure_time.to_s
+      self.focal_length = exif.focal_length.to_f
+      self.taken_time = exif.date_time
+      # self.gps_lat = 
+      # self.gps_lng
+      # self.lens_type =      
+      # self.iso = exif.iso_speed_ratings
+    end
   end
 
   def exif_data?
