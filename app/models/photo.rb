@@ -71,7 +71,7 @@ class Photo < ActiveRecord::Base
   end
 
   def exif_data?
-    if self.camera_type.length > 0 || self.aperture.length > 0 || self.focal_length.length > 0 || self.shutter_speed.length > 0 then true else false end
+    if self.camera_type.present? || self.aperture.present? || self.focal_length.present? || self.shutter_speed.present? then true else false end
   end
 
 end
