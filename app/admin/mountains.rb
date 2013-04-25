@@ -1,5 +1,9 @@
 ActiveAdmin.register Mountain do
 
+	controller do
+    defaults :finder => :find_by_slug
+  end
+
 	action_item :only => :index do
 		link_to 'Upload CSV', :action => 'upload_csv'
 	end

@@ -1,5 +1,5 @@
 class Region < ActiveRecord::Base
-  attr_accessible :name
+  attr_accessible :name, :slug
   has_many :mountains, order: "name ASC"
 
 	validates :slug, uniqueness: true, presence: true

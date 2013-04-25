@@ -19,7 +19,7 @@
 
 class Mountain < ActiveRecord::Base
   attr_accessible :name, :gps_lat, :gps_lon, :description, :phone, :web_link, :tickets_link, 
-  		:trail_map, :state, :region_id
+  		:trail_map, :state, :region_id, :slug
 
   has_many :photos
   has_many :my_mountains, dependent: :destroy
