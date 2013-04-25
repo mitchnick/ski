@@ -54,7 +54,7 @@ class Photo < ActiveRecord::Base
   end
   
   def get_photo_attributes
-    if EXIFR::JPEG.new('IMG_6841.JPG').exif? then 
+    if EXIFR::JPEG.new(image.file.file).exif? then 
       exif = EXIFR::JPEG.new(image.file.file)
       self.width = exif.width
       self.height = exif.height
