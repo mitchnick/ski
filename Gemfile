@@ -33,11 +33,11 @@ gem 'exifr'
 
 # gems for deploying to the server and for production
 gem 'capistrano'
+gem 'activerecord-postgresql-adapter'
 
 group :production do
   gem 'unicorn'
   gem 'pg'
-  gem 'activerecord-postgresql-adapter'
 end
 # platforms :ruby do # linux
 # end
