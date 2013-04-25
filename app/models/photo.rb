@@ -21,7 +21,7 @@ class Photo < ActiveRecord::Base
   validates :remote_image_url, :presence => {:message=>"You must enter an image or web link"}, :if => Proc.new { |a| a.image.blank?}
   validates :name, presence: true, length: { maximum: 50 }
 
-  before_create :get_photo_attributes
+  # before_create :get_photo_attributes
 
   mount_uploader :image, ImageUploader
 
