@@ -1,7 +1,4 @@
 Wheretoski::Application.routes.draw do
-  ActiveAdmin.routes(self)
-
-  devise_for :admin_users, ActiveAdmin::Devise.config
 
   get "static_pages/home"
   get "users/new"
@@ -41,6 +38,10 @@ Wheretoski::Application.routes.draw do
   match '/:mountain_id/photo/:photo_id/remove_rider', to: 'photos#remove_rider', :as => :remove_rider_photo
 
   match 'auth/facebook/callback' => redirect("/users/auth/facebook")
+
+  ActiveAdmin.routes(self)
+
+  devise_for :admin_users, ActiveAdmin::Devise.config
 
   # match 'auth/:provider/callback', to: 'authentications#create'
   # OR

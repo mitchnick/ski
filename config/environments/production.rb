@@ -1,6 +1,9 @@
 Wheretoski::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
+  # May need to add this to get the assets to precompile 
+  # config.assets.precompile += ['cerulean.css']
+
   # Code is not reloaded between requests
   config.cache_classes = true
 
