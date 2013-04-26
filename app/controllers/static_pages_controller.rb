@@ -11,7 +11,7 @@ class StaticPagesController < ApplicationController
 			@landing_page = true
 			@no_footer = true
 			@photo = @photos_array[Random.rand(10)]
-			@photo_user = PhotoRelationship.where("role_id = ? AND photo_id = ?", RelationshipRole::CREATOR, @photo.id).first.user
+			@photo_user = @photo.user
 		end
 
 	end
