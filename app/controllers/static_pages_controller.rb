@@ -10,7 +10,7 @@ class StaticPagesController < ApplicationController
 		else
 			@landing_page = true
 			@no_footer = true
-			@photo = @photos_array[Random.rand(10)]
+			@photo = @photos_array[Random.rand([10, @photos_array.length].min)]
 			@photo_user = @photo.user
 		end
 
