@@ -82,8 +82,8 @@ Wheretoski::Application.configure do
     domain: "wheretoski.co",
     authentication: "plain",
     enable_starttls_auto: true,
-    user_name: ENV["EMAIL_USER"],
-    password: ENV["EMAIL_PASS"]
+    user_name: CONFIG[:email_user],
+    password: CONFIG[:email_pass]
   }
 
 end

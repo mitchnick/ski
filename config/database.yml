@@ -25,7 +25,7 @@ production:
   pool: 5
   host: localhost
   username: wheretoski
-  password: ENV["DB_PASS"]
+  password: CONFIG[:db_pass]
 
 cucumber:
   <<: *test
