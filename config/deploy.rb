@@ -39,8 +39,6 @@ namespace :deploy do
     run "mkdir -p #{shared_path}/config"
     put File.read("config/database.yml"), "#{shared_path}/config/database.yml"
     puts "Now edit the config files in #{shared_path}."
-    # run "mkdir -p #{shared_path}/config"
-    # template "application.yml.erb", "#{shared_path}/config/application.yml"
   end
   after "deploy:setup", "deploy:setup_config"
 
@@ -49,9 +47,14 @@ namespace :deploy do
   end
   after "deploy:finalize_update", "deploy:symlink_config"
 
-  # before 'deploy:assets:precompile' do
-  #   run "ln -s #{shared_path}/config/application.yml #{release_path}/config/application.yml"
-  # end
+  task :setup do
+    run "mkdir -p #{shared_path}/config"
+    template "application.yml.erb", "#{shared_path}/config/application.yml"
+  end
+
+  before 'deploy:assets:precompile' do
+    run "ln -s #{shared_path}/config/application.yml #{release_path}/config/application.yml"
+  end
 
   desc "Make sure local git is in sync with remote."
   task :check_revision, roles: :web do
