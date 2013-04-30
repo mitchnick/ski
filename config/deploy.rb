@@ -14,7 +14,6 @@ set :scm, "git"
 set :deploy_via, :remote_cache
 set :repository,  "git@github.com:mitchnick/ski.git"
 set :branch, "master"
-set :shared_children, shared_children + %w{public/uploads}
 
 require "bundler/capistrano"
 set :default_environment, {
@@ -48,6 +47,10 @@ namespace :deploy do
     run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
   end
   after "deploy:finalize_update", "deploy:symlink_config"
+
+  task :symlink_uploads do
+    run "ln -nfs #{shared_path}/uploads  #{release_path}/public/uploads"
+  end
 
   task :setup do
     run "mkdir -p #{shared_path}/config"

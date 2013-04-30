@@ -7,7 +7,7 @@
     <%= stylesheet_link_tag    "application", media: "all" %>
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
-    <%= favicon_link_tag %>
+    <%= favicon_link_tag 'public/favicon.ico' %>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   </head>
   <body class="<%= @landing_page ? 'landing_page' : ''%>", background="<%= @landing_page ? @photo.image : ''%>" data-spy="scroll" data-target="#scroll-tabs">
