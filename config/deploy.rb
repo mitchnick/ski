@@ -14,6 +14,7 @@ set :scm, "git"
 set :deploy_via, :remote_cache
 set :repository,  "git@github.com:mitchnick/ski.git"
 set :branch, "master"
+set :shared_children, shared_children + %w{public/uploads}
 
 require "bundler/capistrano"
 set :default_environment, {
