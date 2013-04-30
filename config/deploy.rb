@@ -38,9 +38,6 @@ namespace :deploy do
     sudo "ln -nfs #{current_path}/config/nginx.conf /etc/nginx/sites-enabled/#{application}"
     sudo "ln -nfs #{current_path}/config/unicorn_init.sh /etc/init.d/unicorn_#{application}"
     run "mkdir -p #{shared_path}/config"
-    run ">#{release_path}/config/application.yml"
-    # template "application.yml", "#{shared_path}/config/application.yml"
-    run "ln -s #{shared_path}/config/application.yml #{release_path}/config/application.yml"
     put File.read("config/database.yml"), "#{shared_path}/config/database.yml"
     puts "Now edit the config files in #{shared_path}."
   end
@@ -51,9 +48,10 @@ namespace :deploy do
   end
   after "deploy:finalize_update", "deploy:symlink_config"
 
-  task :setup do
-    run "mkdir -p #{shared_path}/config"
-    # template "application.yml.erb", "#{shared_path}/config/application.yml"
+  task :setup do 
+    run "mkdir -p #{release_path}/config"
+    run ">#{release_path}/config/application.yml"
+    run "ln -s #{shared_path}/config/application.yml #{release_path}/config/application.yml"
   end
 
   before 'deploy:assets:precompile' do
