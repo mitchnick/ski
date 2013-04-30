@@ -41,7 +41,7 @@ namespace :deploy do
 
     # custom my mitch
     run "mkdir -p #{release_path}/config"
-    run ">#{release_path}/config/application.yml"
+    # run ">#{release_path}/config/application.yml"
     run "ln -s #{shared_path}/config/application.yml #{release_path}/config/application.yml"
 
     put File.read("config/database.yml"), "#{shared_path}/config/database.yml"
