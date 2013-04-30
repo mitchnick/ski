@@ -80,7 +80,7 @@ class User < ActiveRecord::Base
                            home_town:auth.info.location,
                            photo:auth.info.image
                            )
-      user.skip_confirmation!
+      # user.skip_confirmation!
       user.save
     end
     user
