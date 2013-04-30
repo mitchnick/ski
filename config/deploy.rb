@@ -50,7 +50,7 @@ namespace :deploy do
 
   task :setup do
     run "mkdir -p #{shared_path}/config"
-    template "application.yml.erb", "#{shared_path}/config/application.yml"
+    # template "application.yml.erb", "#{shared_path}/config/application.yml"
   end
 
   before 'deploy:assets:precompile' do
