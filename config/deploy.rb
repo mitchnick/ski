@@ -14,6 +14,7 @@ set :scm, "git"
 set :deploy_via, :remote_cache
 set :repository,  "git@github.com:mitchnick/ski.git"
 set :branch, "master"
+set :shared_children, shared_children + %w{public/uploads}
 
 require "bundler/capistrano"
 set :default_environment, {
@@ -37,6 +38,7 @@ namespace :deploy do
     sudo "ln -nfs #{current_path}/config/nginx.conf /etc/nginx/sites-enabled/#{application}"
     sudo "ln -nfs #{current_path}/config/unicorn_init.sh /etc/init.d/unicorn_#{application}"
     run "mkdir -p #{shared_path}/config"
+    template "application.yml", "#{shared_path}/config/application.yml"
     run "ln -s #{shared_path}/config/application.yml #{release_path}/config/application.yml"
     put File.read("config/database.yml"), "#{shared_path}/config/database.yml"
     puts "Now edit the config files in #{shared_path}."
@@ -47,10 +49,6 @@ namespace :deploy do
     run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
   end
   after "deploy:finalize_update", "deploy:symlink_config"
-
-  task :symlink_uploads do
-    run "ln -nfs #{shared_path}/uploads  #{release_path}/public/uploads"
-  end
 
   task :setup do
     run "mkdir -p #{shared_path}/config"
