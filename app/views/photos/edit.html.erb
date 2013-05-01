@@ -18,6 +18,8 @@
 						</div>
 					</div>
 				<% end %> 
+				</br>
+				<p class="text-right"><%= link_to "Delete this photo", mountain_photo_path(@mountain, @photo), :data => { :confirm => "Are you sure?" }, :method => :delete %></p>
 			</div>
 		</div>
 	</div>

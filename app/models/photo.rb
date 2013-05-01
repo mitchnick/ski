@@ -21,7 +21,7 @@ class Photo < ActiveRecord::Base
   validates :remote_image_url, :presence => {:message=>"You must enter an image or web link"}, :if => Proc.new { |a| a.image.blank?}
   validates :name, presence: true, length: { maximum: 50 }
 
-  # before_create :get_photo_attributes
+  before_create :get_photo_attributes
 
   mount_uploader :image, ImageUploader
 
@@ -54,8 +54,8 @@ class Photo < ActiveRecord::Base
   end
   
   def get_photo_attributes
-    if EXIFR::JPEG.new(image.file.file).exif? then 
-      exif = EXIFR::JPEG.new(image.file.file)
+    if EXIFR::JPEG.new(self.image.file.path).exif? then 
+      exif = EXIFR::JPEG.new(self.image.file.path)
       self.width = exif.width
       self.height = exif.height
       self.camera_type = exif.model

@@ -1,6 +1,6 @@
 class PhotosController < ApplicationController
   before_filter :get_mountain
-  before_filter :authenticate_user!, only: [:new, :create, :edit, :update]
+  before_filter :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
 
   def get_mountain
     @mountain = Mountain.find_by_slug!(params[:mountain_id])
@@ -52,6 +52,12 @@ class PhotosController < ApplicationController
       render 'edit'
     end
     
+  end
+
+  def destroy
+    @photo = Photo.find(params[:id])
+    @photo.destroy
+    redirect_to @mountain
   end
 
   def add_rider

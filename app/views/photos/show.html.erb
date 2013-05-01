@@ -25,13 +25,15 @@
 		</div>
 		<div class="span3">
 			<!-- Right section -->
-			<div class="row-fluid well photo-user">
-				<!-- Photographer Section -->
-				<% if @photo.user.present? then %>
-					<div class="span4 user_photo"> <%= link_to user_image(@photo.user, '',70), @photo.user %> </div>
-					<div class="span8"><p>Photo By:</p><h4> <%= link_to @photo.user.name, @photo.user %></h4></div>
-				<% end %>
-			</div>
+			<% unless @photo.user.name == "WhereToSki Admin" then %>
+				<div class="row-fluid well photo-user">
+					<!-- Photographer Section -->
+					<% if @photo.user.present? then %>
+						<div class="span4 user_photo"> <%= link_to user_image(@photo.user, '',70), @photo.user %> </div>
+						<div class="span8"><p>Photo By:</p><h4> <%= link_to @photo.user.name, @photo.user %></h4></div>
+					<% end %>
+				</div>
+			<% end %>
 			<!-- Rider Section -->
 			<div class="show-photo-rider"><%= render 'photos/show_rider' %></div>
 			<div class="row-fluid well">
