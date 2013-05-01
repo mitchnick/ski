@@ -52,6 +52,7 @@ class Mountain < ActiveRecord::Base
     else
       Photo.find( :first,
                   :select => "photos.*, count(gnars.id) as gnar_count", 
+                  :from => "photos",
                   :joins => "left outer join gnars ON gnars.photo_id = photos.id", 
                   :conditions => ["photos.mountain_id = ?",self.id], 
                   :order => "gnar_count desc",
