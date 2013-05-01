@@ -43,17 +43,20 @@ class Mountain < ActiveRecord::Base
 
   def top_image
     if Rails.env.production? then 
+      Photo.find()
       Photo.find( :first,
                   :select => "photos.*, count(gnars.id) as gnar_count", 
                   :joins => "left outer join gnars ON gnars.photo_id = photos.id", 
                   :conditions => ["photos.mountain_id = ?",self.id], 
-                  :order => "gnar_count desc")
+                  :order => "gnar_count desc",
+                  :group => "photos.id")
     else
       Photo.find( :first,
                   :select => "photos.*, count(gnars.id) as gnar_count", 
                   :joins => "left outer join gnars ON gnars.photo_id = photos.id", 
                   :conditions => ["photos.mountain_id = ?",self.id], 
-                  :order => "gnar_count desc")
+                  :order => "gnar_count desc",
+                  :group => "photos.id")
     end
     # pics = photos.sort { |x,y| y.gnars.count <=> x.gnars.count }
     # pics.first
