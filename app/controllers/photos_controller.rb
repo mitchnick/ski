@@ -28,7 +28,7 @@ class PhotosController < ApplicationController
       current_user.create_relationship(@photo, RelationshipRole::CREATOR)
       current_user.create_relationship(@photo, RelationshipRole::PHOTOGRAPHER)
       current_user.has_been_to(@mountain)
-      flash[:notice] = "Successfully added your photo"
+      flash[:notice] = "Successfully added your photo. Click #{ link_to "here", new_mountain_photo_path(@mountain)} to add another photo."
   		redirect_to [@mountain, @photo]
   	else
   		render :action => 'new'
