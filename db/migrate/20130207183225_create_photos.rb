@@ -16,7 +16,7 @@ class CreatePhotos < ActiveRecord::Migration
       t.string			:zipcode
       t.text			  :description
       t.string      :width
-      t.string      :length
+      t.string      :height
       t.date        :time_taken
       t.string      :image_url
       t.string      :remote_image_url
