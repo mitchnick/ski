@@ -54,7 +54,7 @@ class Photo < ActiveRecord::Base
   end
   
   def get_photo_attributes
-    self.description = self.image.file.path 
+    self.description = image.file.file
     
     # if EXIFR::JPEG.new(self.image.file.path).exif? then 
     #   exif = EXIFR::JPEG.new(self.image.file.path)
