@@ -49,6 +49,9 @@
 					<%= unless @photo.description.present? then link_to "Add a description", edit_mountain_photo_path(@mountain, @photo) end %>
 					</p>
 				<% end %>
+				<% if @photo.web_link.present? then %> 
+					<p><strong>Original Image:</strong> Can be found <%= link_to "here", @photo.web_link %></p>
+				<% end%> 
 				<% if @photo.tag_list.length > 0 || current_user == @photo.user then %>
 					<% if current_user == @photo.user then %>
 						<div class="divider"></div>

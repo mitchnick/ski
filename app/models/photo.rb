@@ -1,7 +1,7 @@
 class Photo < ActiveRecord::Base
   attr_accessible :name, :description, :camera_type, :lens_type, :aperture, :shutter_speed, :focal_length, 
     :views, :license_attr, :city, :state, :zipcode, :image, :remote_image_url, :image_thumb, :width, :height, 
-  	:taken_time, :tag_list, :gear_list, :mountain_id, :image_url, :user_id, :rider_id
+  	:taken_time, :tag_list, :gear_list, :mountain_id, :image_url, :user_id, :rider_id, :web_link
 
   belongs_to :mountain 
   has_many :photo_relationships, dependent: :destroy
@@ -21,7 +21,7 @@ class Photo < ActiveRecord::Base
   validates :remote_image_url, :presence => {:message=>"You must enter an image or web link"}, :if => Proc.new { |a| a.image.blank?}
   validates :name, presence: true, length: { maximum: 50 }
 
-  before_create :get_photo_attributes
+  before_create :get_photo_attributes, :get_remote_image_url
 
   mount_uploader :image, ImageUploader
 
@@ -67,6 +67,12 @@ class Photo < ActiveRecord::Base
       # self.gps_lng
       # self.lens_type =      
       # self.iso = exif.iso_speed_ratings
+    end
+  end
+
+  def get_remote_image_url
+    if remote_image_url.present?
+      self.web_link = remote_image_url
     end
   end
 
