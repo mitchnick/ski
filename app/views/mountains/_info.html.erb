@@ -8,4 +8,7 @@
 	<% if @mountain.web_link.present? then %>
 		<dt>Website:</dt> <dd><%= link_to @mountain.web_link, @mountain.web_link %></dd>
 	<% end %><br>
+	<% if @mountain.tickets_link.present? then %>
+		<dt>Discount Tickets:</dt> <dd><%= link_to @mountain.tickets_link, @mountain.tickets_link %></dd>
+	<% end %><br>
 </dl>
