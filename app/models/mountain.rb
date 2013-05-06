@@ -19,7 +19,7 @@
 
 class Mountain < ActiveRecord::Base
   attr_accessible :name, :gps_lat, :gps_lon, :description, :phone, :web_link, :tickets_link, 
-  		:trail_map, :state, :region_id, :slug
+  		:trail_map, :state, :region_id, :slug, :stats
 
   has_many :photos
   has_many :my_mountains, dependent: :destroy
@@ -47,7 +47,7 @@ class Mountain < ActiveRecord::Base
                 :joins => "left outer join gnars ON gnars.photo_id = photos.id", 
                 :conditions => ["photos.mountain_id = ?",self.id], 
                 :order => "gnar_count desc",
-                :group => "photos.mountain_id")
+                :group => "photos.mountain_id, photos.id")
     # pics = photos.sort { |x,y| y.gnars.count <=> x.gnars.count }
     # pics.first
   end
