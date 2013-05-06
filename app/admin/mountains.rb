@@ -35,7 +35,7 @@ ActiveAdmin.register Mountain do
       f.input :name
       f.input :slug 
       f.input :region_id 
-      f.input :description, as: :html_editor
+      f.input :description, :input_html => {:class => "ckeditor"}
       f.input :phone
       f.input :web_link
       f.input :tickets_link

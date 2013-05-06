@@ -19,7 +19,7 @@ gem 'devise'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'activeadmin'
-gem 'active_admin_editor'
+gem 'ckeditor'
 gem 'smarter_csv'
 
 # gems for forms

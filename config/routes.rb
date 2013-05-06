@@ -43,6 +43,8 @@ Wheretoski::Application.routes.draw do
 
   devise_for :admin_users, ActiveAdmin::Devise.config
 
+  mount Ckeditor::Engine => "/ckeditor"
+
   # match 'auth/:provider/callback', to: 'authentications#create'
   # OR
   # match 'auth/:provider/callback', to: 'users/omniauth_callbacks#facebook'
