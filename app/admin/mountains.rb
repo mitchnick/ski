@@ -29,4 +29,22 @@ ActiveAdmin.register Mountain do
 		column :updated_at
 		column :created_at
 	end
+
+	form do |f|
+    f.inputs do
+      f.input :name
+      f.input :slug 
+      f.input :region_id 
+      f.input :description, as: :html_editor
+      f.input :phone
+      f.input :web_link
+      f.input :tickets_link
+      f.input :trail_map
+      f.input :state
+      f.input :gps_lat
+      f.input :gps_lon
+    end
+
+    f.buttons
+  end
 end

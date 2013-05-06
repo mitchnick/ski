@@ -1,6 +1,6 @@
 <dl class="dl-horizontal">
 	<% if @mountain.description.present? then %>
-		<dt>About:</dt> <dd><%= @mountain.description %></dd>
+		<dt>About:</dt> <dd><%= @mountain.description.html_safe %></dd>
 	<% end %><br>
 	<% if @mountain.phone.present? then %>
 		<dt>Phone:</dt> <dd><%= @mountain.phone %></dd>

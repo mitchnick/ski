@@ -12,4 +12,5 @@
  *= require custom
  *= require active_admin
  *= require select2-bootstrap
+ *= require active_admin/editor/wysiwyg
  */
