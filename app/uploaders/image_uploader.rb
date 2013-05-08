@@ -25,7 +25,7 @@ class ImageUploader < CarrierWave::Uploader::Base
     "#{model.name}.#{file.extension}" if original_filename
   end
 
-  process :resize_to_limit => [900,900]
+  process :resize_to_limit => [900,3000]
 
   version :thumb do
     process :resize_to_fill => [270, 270]
