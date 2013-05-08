@@ -4,6 +4,9 @@ class Region < ActiveRecord::Base
 
 	validates :slug, uniqueness: true, presence: true
   before_validation :generate_slug
+
+  scope :alphabetical, order("name ASC")
+  default_scope alphabetical
   
   def to_param
     "#{name}".parameterize
