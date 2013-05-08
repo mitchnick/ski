@@ -1,6 +1,6 @@
 <div class="row-fluid">
 	<div class="page-header text-center"><h1>Search Results</h1>
-		<p>There are <%= pluralize(@mountains.length, "mountain") %> and <%= pluralize(@regions.length, "region") %> in your search results.</p>
+		<p>There are <%= pluralize(@mountains.total_entries, "mountain") %> and <%= pluralize(@regions.total_entries, "region") %> in your search results.</p>
 	</div>
 	<div class="centered-pills">
 		<ul class="nav nav-pills search-pills" id="searchResults">	
