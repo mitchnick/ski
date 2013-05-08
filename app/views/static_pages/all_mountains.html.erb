@@ -1,15 +1,11 @@
 <% provide(:title, "All Mountains") %>
 <div class="container">
-	<ul class="thumbnails">
-		<% @regions.each do |region| %>
-			<div class="span4 thumbnail region-thumbnail">
-				<h2><%= link_to region.name, region %></h2>
-				<ul>
-					<% region.mountains.each do |mountain| %>
-						<li><%= link_to mountain.name, mountain %></li>
-					<% end %> 
-				</ul>
-			</div>
-		<% end %>
-	</ul>
+	<% @regions.each do |region| %>
+		<h2><%= link_to region.name, region %></h2>
+		<ul>
+			<% region.mountains.each do |mountain| %>
+				<li><%= link_to mountain.name, mountain %></li>
+			<% end %> 
+		</ul>
+	<% end %>
 </div>
