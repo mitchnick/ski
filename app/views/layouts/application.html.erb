@@ -8,7 +8,7 @@
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
     <%= favicon_link_tag %>
-    <%= google_analytics_helper 'UA-36870760-1'%>
+    <%= google_analytics 'UA-36870760-1'%>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   </head>
   <body class="<%= @landing_page ? 'landing_page' : ''%>", background="<%= @landing_page ? @photo.image : ''%>" data-spy="scroll" data-target="#scroll-tabs">
