@@ -67,11 +67,13 @@
 			<% if @photo.exif_data? then %>
 				<div class="row-fluid well camera-settings">
 					<!-- Camera Settings when taking the picture -->
-					<p><strong>Camera:</strong> <%= @photo.camera_type %></p>
-					<% if @photo.aperture.length > 0 then %>
+					<% if @photo.camera_type.present? then %>
+						<p><strong>Camera:</strong> <%= @photo.camera_type %></p>
+					<% end %>
+					<% if @photo.aperture != "0.0" then %>
 						<p><strong>Aperture:</strong> f/<%= @photo.aperture %></p>
 					<% end %>
-					<% if @photo.focal_length.length > 0 then %>
+					<% if @photo.focal_length != "0.0" then %>
 						<p><strong>Focal Length:</strong> <%= @photo.focal_length %>mm</p>
 					<% end %>
 					<% if @photo.shutter_speed.length > 0 then %>
