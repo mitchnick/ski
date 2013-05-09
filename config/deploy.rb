@@ -53,13 +53,15 @@ namespace :deploy do
 
   task :symlink_config, roles: :app do
     run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
-    #Added for sitemap
-    run "ln -nfs #{current_path}/public/shared #{shared_path}/public"
   end
   after "deploy:finalize_update", "deploy:symlink_config"
 
   before 'deploy:assets:precompile' do
     run "ln -s #{shared_path}/config/application.yml #{release_path}/config/application.yml"
+  end
+
+  task :copy_old_sitemap do
+    run "if [ -e #{previous_release}/public/sitemap.xml.gz ]; then cp #{previous_release}/public/sitemap* #{current_release}/public/; fi"
   end
 
   desc "Make sure local git is in sync with remote."
