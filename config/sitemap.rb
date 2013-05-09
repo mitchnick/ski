@@ -8,19 +8,19 @@ SitemapGenerator::Sitemap.create do
   add '/all_mountains'
 
   Mountain.find_each do |mountain|
-    add mountains_url(mountain), :lastmod => mountain.updated_at
+    add mountain_path(mountain), :lastmod => mountain.updated_at
   end
 
   Region.find_each do |region|
-    add regions_url(region), :lastmod => region.updated_at
+    add region_path(region), :lastmod => region.updated_at
   end
   
   User.find_each do |user|
-    add users_url(user), :lastmod => user.updated_at
+    add user_path(user), :lastmod => user.updated_at
   end
 
   Photo.find_each do |photo|
-    add mountain_photos_url(photo.mountain, photo), :lastmod => photo.updated_at
+    add mountain_photo_path(photo.mountain, photo), :lastmod => photo.updated_at
   end
 
   # Put links creation logic here.
