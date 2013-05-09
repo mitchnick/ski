@@ -3,10 +3,10 @@ SitemapGenerator::Sitemap.default_host = "http://www.wheretoski.co"
 SitemapGenerator::Sitemap.sitemaps_path = 'shared/'
 SitemapGenerator::Sitemap.create do
   
-  Add '/about'
-  Add '/contact'
-  Add '/search'
-  Add '/all_mountains'
+  add '/about'
+  add '/contact'
+  add '/search'
+  add '/all_mountains'
 
   Mountains.find_each do |mountain|
     add mountains_path(mountain), :lastmod => mountain.updated_at
