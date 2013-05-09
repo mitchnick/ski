@@ -9,6 +9,7 @@ gem 'jquery-rails', '2.0.2'
 # gems for data
 gem 'faker', '1.0.1'
 gem 'figaro'   # makes data contants local and hidden
+gem 'sitemap_generator' 
 
 # gems for design
 gem 'bootstrap-will_paginate', '0.0.6'
