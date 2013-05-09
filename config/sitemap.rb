@@ -8,19 +8,19 @@ SitemapGenerator::Sitemap.create do
   add '/search'
   add '/all_mountains'
 
-  Mountains.find_each do |mountain|
+  Mountain.find_each do |mountain|
     add mountains_path(mountain), :lastmod => mountain.updated_at
   end
 
-  Regions.find_each do |region|
+  Region.find_each do |region|
     add regions_path(region), :lastmod => region.updated_at
   end
   
-  Users.find_each do |user|
+  User.find_each do |user|
     add users_path(user), :lastmod => user.updated_at
   end
 
-  Photos.find_each do |photo|
+  Photo.find_each do |photo|
     add mountain_photos_path(photo.mountain, photo), :lastmod => photo.updated_at
   end
 
