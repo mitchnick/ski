@@ -72,5 +72,6 @@ group :test do
   gem 'rb-notifu', '0.0.4'
   gem 'factory_girl_rails', '4.1.0'
   gem 'capybara-screenshot'
+  gem 'launchy'
   gem 'timecop'
 end 

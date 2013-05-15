@@ -356,6 +356,7 @@ DEPENDENCIES
   figaro
   guard-rspec
   jquery-rails (= 2.0.2)
+  launchy
   meta_search (>= 1.1.0.pre)
   omniauth
   omniauth-facebook

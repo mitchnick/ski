@@ -1,30 +1,34 @@
 require 'spec_helper'
 
 describe MyMountain do
-	let(:user) { FactoryGirl.create(:user)}
-	let(:mountain) {FactoryGirl.create(:mountain)}
-
-  # it { should respond_to(:mountain)}
-  # it { should respond_to(:user_id)}
-  # it { should respond_to(:type)}
-
-  # it { should be_valid }
-
-	# Can not create without mountain ID
-	it 'is valid when created through FactoryGirl with all variables' do
-		mymountain = FactoryGirl.create(:my_mountain)
-		mymountain.should be_valid
+	
+	it "is created via factory" do 
+		FactoryGirl.create(:my_mountain).should be_valid
 	end
 
-	it 'is invalid without a mountain assigned' do
-		mymountain = Factory(:my_mountain, mountain: nil)
+	it "is not created without a user" do 
+		FactoryGirl.build(:my_mountain, user: nil).should_not be_valid
 	end
 
-	# Can not create without user id
+	it "is not created without a mountain" do
+		FactoryGirl.build(:my_mountain, mountain: nil).should_not be_valid
+	end
 
-	# Can not create without unique mountain id and user id
+	it "is not created without a type" do 
+		FactoryGirl.build(:my_mountain, type: nil).should_not be_valid
+	end
 
-	# Can not create without a type reference
+	it "only one is created per unique user, mountain, type" do 
+		@user = FactoryGirl.create(:user)
+		@mountain = FactoryGirl.create(:mountain)
+		FactoryGirl.create(:my_mountain, user: @user, mountain:@mountain, type: MyMountainRole::HAVEBEEN)
+		FactoryGirl.build(:my_mountain, user: @user, mountain:@mountain, type: MyMountainRole::HAVEBEEN).should_not be_valid
+	end
 
-
+	it "has many users of different types" do 
+		@user = FactoryGirl.create(:user)
+		@mountain = FactoryGirl.create(:mountain)
+		FactoryGirl.create(:my_mountain, user: @user, mountain:@mountain, type: MyMountainRole::HAVEBEEN)
+		FactoryGirl.create(:my_mountain, user: @user, mountain:@mountain, type: MyMountainRole::WANTTOGO).should be_valid
+	end
 end

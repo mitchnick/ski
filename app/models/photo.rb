@@ -7,10 +7,11 @@ class Photo < ActiveRecord::Base
   has_many :photo_relationships, dependent: :destroy
   has_many :gnars, dependent: :destroy
   has_many :users, :through => :photo_relationships
-  has_many :photographers, class_name: 'User', source: :user, through: :photo_relationships
+  # has_many :photographers, class_name: 'User', source: :user, through: :photo_relationships
   has_many :users, :through => :gnars
   has_many :view_counts, dependent: :destroy
   belongs_to :user
+  belongs_to :photographer, class_name: 'User', foreign_key: 'user_id'
   belongs_to :rider, class_name: 'User'
 
   acts_as_taggable
