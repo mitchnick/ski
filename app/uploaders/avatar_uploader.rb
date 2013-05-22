@@ -6,7 +6,6 @@ class AvatarUploader < CarrierWave::Uploader::Base
 
   if Rails.env.production?
     # set where we store in production
-    # TODO: Storage - Update this
     storage :file     # Store locally for testing
   else 
     storage :file     # Store locally for testing

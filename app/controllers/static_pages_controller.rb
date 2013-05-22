@@ -6,10 +6,10 @@ class StaticPagesController < ApplicationController
 		if current_user.present? then 
 			@landing_page = false
 			@photos = @photos_array.paginate(page: params[:page], per_page: GlobalVar::PHOTOSPERPAGE)
-		# Photo for landing page background to be a top 10 most viewed photo
 		else
 			@landing_page = true
 			@no_footer = true
+			# Get photo for the background, top 10 photos to consider only
 			@photo = @photos_array[Random.rand([10, @photos_array.length].min)]
 			@photo_user = @photo.user
 		end

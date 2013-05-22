@@ -19,3 +19,6 @@
 
 # Ignore uploads from development
 /public/uploads
+
+# Ignore coverage tests from rspec
+/coverage

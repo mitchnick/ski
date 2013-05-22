@@ -6,7 +6,7 @@ describe "Photo pages" do
 	let(:mountain) {FactoryGirl.create(:mountain)}
 	let(:photo) {FactoryGirl.create(:photo, mountain: mountain)}
 
-
+	# Testing view count as an integration test as it involves IP address information
 	describe "Test FactoryGirl creates records correctly" do 
 		describe "visit mountain path" do
 			it "can be visited after FactoryGirl create" do

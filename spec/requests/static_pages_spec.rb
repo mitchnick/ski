@@ -57,18 +57,9 @@ describe "Static pages" do
 				visit root_path 
 			end
 
-			describe "mountains should appear on the home page" do 
-				#TODO: Test - Add materials here
-			end
-
 			describe "it has the correct header" do 
 				it { should have_selector('h3', text:'Home') }
 			end
-
-			#TODO: Test - Get this to work
-			# describe "it displays an alert" do 
-			# 	it {should have_selector('alert alert-notice') }
-			# end
 
 			it "has the correct header links" do 
 				visit root_path

@@ -2,6 +2,8 @@ require 'spec_helper'
 
 describe "User Pages" do
 
+	# Testing the login functionality here, including Facebook login 
+	
 	subject { page }
 
 	describe "Sign up page" do 

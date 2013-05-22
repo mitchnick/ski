@@ -51,7 +51,6 @@ Wheretoski::Application.routes.draw do
 
   # match 'auth/failure', to: redirect('/')
   # match 'signout', to: 'authentications#signout', as: 'signout'
-  # TODO: Verify which of the three lines above are required since I'm using devise
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
