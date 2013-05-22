@@ -74,4 +74,5 @@ group :test do
   gem 'capybara-screenshot'
   gem 'launchy'
   gem 'timecop'
+  gem 'simplecov', require: false
 end 

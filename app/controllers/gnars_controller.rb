@@ -2,9 +2,9 @@ class GnarsController < ApplicationController
 	before_filter :authenticate_user!
 
 	respond_to :html, :js
-	def new
-		@gnar = Gnar.new
-	end
+	# def new
+	# 	@gnar = Gnar.new
+	# end
 
 	def create 
 		@photo = Photo.find(params[:gnar][:photo_id])

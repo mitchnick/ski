@@ -1,13 +1,10 @@
 class PhotosController < ApplicationController
   before_filter :get_mountain
-  before_filter :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  before_filter :authenticate_user!, only: [:new, :create, :edit, :update, :destroy, :add_rider, :remove_rider]
+  before_filter :correct_user, only: [:edit, :update, :destroy, :add_rider, :remove_rider]
 
   def get_mountain
     @mountain = Mountain.find_by_slug!(params[:mountain_id])
-  end
-
-  def index
-    @photos = @mountain.photos
   end
 
   def show
@@ -80,4 +77,13 @@ class PhotosController < ApplicationController
     end
   end
 
+  private
+    def correct_user
+      @photo = @mountain.photos.find(params[:id]) || @photo = Photo.find(params[:photo_id])
+      @user = @photo.user
+      unless @user == current_user then 
+        flash[:notice] = "Hey, you can only update photos for which you are the original creator"
+        redirect_to [@mountain, @photo]
+      end
+    end
 end
