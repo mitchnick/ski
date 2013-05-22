@@ -44,8 +44,6 @@ describe "Static pages" do
 			describe "sign in page" do 
 				it "can show the terms and conditions in a modal" do
 					visit new_user_registration_path
-					# click_link 'terms'
-					# TODO: Test - Fix this to ensure terms has to be clicked
 					should have_selector('h3', text:'Terms and Conditions')
 				end
 			end

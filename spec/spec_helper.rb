@@ -80,4 +80,14 @@ RSpec.configure do |config|
       end 
     end 
   end
+
+  # Testing omniauth facebook 
+  OmniAuth.config.add_mock(:facebook,
+                             { :provider => 'facebook',
+                               :uid => '1234567',
+                               :info => { :first_name => 'Jonathan', :name=> 'Jonathan', :email => 'jon@jak.com', :image => 'http://graph.facebook.com/1234567/picture?type=square'},
+                               :credentials => {
+                                 :expires_at => 1351270850,
+                                 :token=> 'AAADzk0b791YBAHCNhBI3n6ScmWvuXTY4yIUqXr9WiZCg1R808RYzaHxsHnrbn62IwrIgZCfSBZAVIP6ptF41nm8YtRtZCeBbxbbz1mF8RQZDZD'
+                                } })
 end

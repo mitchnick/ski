@@ -37,4 +37,7 @@ Wheretoski::Application.configure do
 
   # ActionMailer Config
   config.action_mailer.default_url_options = { :host => 'example.com' }
+
+  # Testing omniauth in rspec
+  OmniAuth.config.test_mode = true
 end
