@@ -10,11 +10,19 @@ describe "Static pages" do
 		it { should have_selector('title', 		text: full_title(page_title))}
 	end
 
+	before :each do 
+		@user = FactoryGirl.create(:user)
+		@region = FactoryGirl.create(:region)
+		@mountain = FactoryGirl.create(:mountain, region: @region)
+		@photo = FactoryGirl.create(:photo, mountain: @mountain, user: @user)
+	end
+
 	describe "Home page" do  
-		before { visit root_path }
+		before :each do 
+			visit root_path
+		end
 		let(:heading) {'Where to Ski'}
 		let(:page_title) {''}
-		let(:user) { FactoryGirl.create(:user)}
 		
 		it_should_behave_like "all static pages"
 		it {should_not have_selector('title', text: '| Home')}
@@ -27,7 +35,7 @@ describe "Static pages" do
 				click_link 'Home'
 				should have_selector('title', text:'')
 				click_link 'Sign in'
-				should have_selector('title', text:'Sign in')
+				should have_selector('strong', text:'Log in')
 				visit root_path
 				click_link 'Sign up now!'
 				should have_selector('title', text:'Sign up')
@@ -44,19 +52,15 @@ describe "Static pages" do
 			describe "sign in page" do 
 				it "can show the terms and conditions in a modal" do
 					visit new_user_registration_path
-					should have_selector('h3', text:'Terms and Conditions')
+					should have_link('terms')
 				end
 			end
 		end
 
 		describe "when logged in" do 
 			before(:each) do 
-				login_as user, :scope => :user
+				login_as @user, :scope => :user
 				visit root_path 
-			end
-
-			describe "it has the correct header" do 
-				it { should have_selector('h3', text:'Home') }
 			end
 
 			it "has the correct header links" do 
@@ -92,7 +96,8 @@ describe "Static pages" do
 		let(:heading) {'Contact'}
 		let(:page_title) {'Contact'}
 
-		it_should_behave_like "all static pages"
+		it { should have_selector('h2', 		text: heading)}
+		it { should have_selector('title', 		text: full_title(page_title))}
 	end
 	
 end

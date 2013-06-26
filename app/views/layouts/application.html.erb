@@ -11,7 +11,7 @@
     <%= google_analytics 'UA-36870760-1'%>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   </head>
-  <body class="<%= @landing_page ? 'landing_page' : ''%>", background="<%= @landing_page ? @photo.image : ''%>" data-spy="scroll" data-target="#scroll-tabs">
+  <body class="<%= @login-layout ? 'login-layout' : ''%>", background="<%= @landing_page ? @photo.image : ''%>" data-spy="scroll" data-target="#scroll-tabs">
     
     <%= render 'layouts/header' %>
     <div class="container main-content-container">
