@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
   before_filter :correct_user, only: [:update, :edit]
 
-  def new
-    @user = User.new 
-  end
+  # def new
+  #   @user = User.new
+  # end
 
   def create
   	@user = User.new(params[:user])
@@ -53,7 +53,7 @@ class UsersController < ApplicationController
   private
     def correct_user
       @user = User.find(params[:id])
-      unless @user == current_user then 
+      unless @user == current_user then
         flash[:error] = "Hey, you aren't this person! You can only edit your own User record."
         redirect_to @user
       end

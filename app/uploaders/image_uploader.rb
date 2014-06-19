@@ -4,12 +4,12 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   include CarrierWave::RMagick
 
-  if Rails.env.production?
-    # set where we store in production
-    storage :file     # Store locally for testing
-  else 
-    storage :file     # Store locally for testing
-  end
+  # if Rails.env.production?
+  #   # set where we store in production
+  #   storage :file     # Store locally for testing
+  # else
+  #   storage :file     # Store locally for testing
+  # end
 
   # Restrict uploads to images only
   def extension_white_list
@@ -20,7 +20,7 @@ class ImageUploader < CarrierWave::Uploader::Base
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
-  def filename 
+  def filename
     "#{model.name}.#{file.extension}" if original_filename
   end
 
@@ -34,7 +34,7 @@ class ImageUploader < CarrierWave::Uploader::Base
     process :resize_to_fill => [100, 100]
   end
 
-  private 
+  private
 
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick

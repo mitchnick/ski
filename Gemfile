@@ -9,7 +9,7 @@ gem 'jquery-rails', '2.0.2'
 # gems for data
 gem 'faker', '1.0.1'
 gem 'figaro'   # makes data contants local and hidden
-gem 'sitemap_generator' 
+gem 'sitemap_generator'
 
 # gems for design
 gem 'bootstrap-will_paginate', '0.0.6'
@@ -32,6 +32,7 @@ gem 'active_attr'
 gem 'carrierwave'
 gem 'rmagick'
 gem 'exifr'
+gem "fog" #, "~> 1.3.1"   # Used to handle S3 uploads with carrierwave
 
 # gems for deploying to the server and for production
 gem 'capistrano'
@@ -68,11 +69,11 @@ group :test do
   gem 'guard-rspec'
   gem 'cucumber-rails', require: false
   gem 'capybara', '1.1.2'
-  gem 'rb-fchange', '0.0.5'
-  gem 'rb-notifu', '0.0.4'
+  # gem 'rb-fchange', '0.0.5'
+  # gem 'rb-notifu', '0.0.4'
   gem 'factory_girl_rails', '4.1.0'
   gem 'capybara-screenshot'
   gem 'launchy'
   gem 'timecop'
   gem 'simplecov', require: false
-end 
+end

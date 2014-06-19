@@ -20,7 +20,8 @@ class PhotosController < ApplicationController
 
   def create
   	@photo = @mountain.photos.new(params[:photo])
-    
+    @photo.user = current_user
+
   	if @photo.save
       current_user.create_relationship(@photo, RelationshipRole::CREATOR)
       current_user.create_relationship(@photo, RelationshipRole::PHOTOGRAPHER)
@@ -48,7 +49,7 @@ class PhotosController < ApplicationController
     else
       render 'edit'
     end
-    
+
   end
 
   def destroy
@@ -81,7 +82,7 @@ class PhotosController < ApplicationController
     def correct_user
       @photo = @mountain.photos.find(params[:id]) || @photo = Photo.find(params[:photo_id])
       @user = @photo.user
-      unless @user == current_user then 
+      unless @user == current_user then
         flash[:notice] = "Hey, you can only update photos for which you are the original creator"
         redirect_to [@mountain, @photo]
       end
