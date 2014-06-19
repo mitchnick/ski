@@ -39,6 +39,7 @@ gem 'unf'
 gem 'capistrano'
 gem 'activerecord-postgresql-adapter'
 gem 'pg'
+gem 'rvm-capistrano'
 
 group :production do
   gem 'unicorn'
