@@ -1,4 +1,3 @@
-require "rvm/capistrano"
 require "bundler/capistrano"
 
 server "198.58.101.242", :web, :app, :db, primary: true
@@ -18,9 +17,9 @@ set :branch, "master"
 set :shared_children, shared_children + %w{public/uploads}
 
 require "bundler/capistrano"
-# set :default_environment, {
-# 'PATH' => "$HOME/.rbenv/shims:$HOME/.rbenv/bin:$PATH"
-# }
+set :default_environment, {
+'PATH' => "$HOME/.rbenv/shims:$HOME/.rbenv/bin:$PATH"
+}
 
 default_run_options[:pty] = true
 set :ssh_options, { :forward_agent => true }
