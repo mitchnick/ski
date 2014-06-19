@@ -32,7 +32,8 @@ gem 'active_attr'
 gem 'carrierwave'
 gem 'rmagick'
 gem 'exifr'
-gem "fog" #, "~> 1.3.1"   # Used to handle S3 uploads with carrierwave
+gem 'fog' #, "~> 1.3.1"   # Used to handle S3 uploads with carrierwave
+gem 'unf'
 
 # gems for deploying to the server and for production
 gem 'capistrano'
